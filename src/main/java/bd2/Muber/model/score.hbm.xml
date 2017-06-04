@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="bd2.Muber.model">
+	<class name="Score" table="SCORE">
+		<id name="idScore" column="idUser" type="long">
+			<generator class="native" />
+		</id>
+		
+		<property name="comment" type="string" />
+		<property name="number" type="int" />
+				
+		<many-to-one name="trip" class="Trip" cascade="save-update"></many-to-one>				
+		
+	</class>
+</hibernate-mapping>
