@@ -1,6 +1,6 @@
 package bd2.Muber.util;
 /**
- * Este paquete contiene clases �tiles para trabajar con el framework Spring.
+ * Este paquete contiene clases utiles para trabajar con el framework Spring.
  */
 
 import java.io.Serializable;

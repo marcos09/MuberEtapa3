@@ -8,18 +8,22 @@ public class ServiceLocator {
 	
 	private FactoryBean pasajeroService;
 	
+	
 	public static ServiceLocator  getInstance(){
 		return instance;
 	}
+	
 	
 	public FactoryBean getPasajeroService() {
 		return pasajeroService;
 	}
 
+	
 	public void setPasajeroService(FactoryBean pasajeroService) {
 		this.pasajeroService = pasajeroService;
 	}
 
+	
 	private ServiceLocator() { }
 
 

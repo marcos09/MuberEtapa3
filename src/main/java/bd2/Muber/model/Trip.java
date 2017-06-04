@@ -162,6 +162,7 @@ public class Trip {
 	 *Podría ocurrir que un pasajero quede con créditos negativos. Desconocemos como se espera que el
 	 *sistema verifique esto. Asumimos que los créditos son enteros  
 	 * */
+	@SuppressWarnings("rawtypes")
 	public void discountCredit(){
 		int passengerNumber = passengers.size() + 1;
 		Passenger passenger;

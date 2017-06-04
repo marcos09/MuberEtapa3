@@ -10,12 +10,18 @@ public abstract class BaseServiceImpl {
 	public HibernatePasajerosRepository getPasajerosRepository() {
 		return pasajerosRepository;
 	}
+	
+	
 	public void setPasajerosRepository(HibernatePasajerosRepository pasajerosRepository) {
 		this.pasajerosRepository = pasajerosRepository;
 	}
+	
+	
 	public DTOFactory getDtoFactory() {
 		return dtoFactory;
 	}
+	
+	
 	public void setDtoFactory(DTOFactory dtoFactory) {
 		this.dtoFactory = dtoFactory;
 	}
