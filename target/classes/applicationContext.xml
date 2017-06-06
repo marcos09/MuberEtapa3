@@ -56,9 +56,7 @@
 	<bean id="pasajerosServiceTarget" class="bd2.Muber.services.impl.PasajerosServiceImpl"
 		parent="baseService">
 	</bean>
-	 
-	 
-
+	  
 	<bean id="pasajerosService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
@@ -73,6 +71,7 @@
 			</props>
 		</property>
 	</bean>
+	
 	
 	<bean id="serviceLocator" class="bd2.Muber.services.ServiceLocator"
 		factory-method="getInstance">
