@@ -2,9 +2,11 @@ package bd2.Muber.repositories.impl;
 
 import org.hibernate.SessionFactory;
 
-public class HibernatePasajerosRepository {
+import antlr.collections.List;
+
+public class HibernatePasajerosRepository  {
 	
-	SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -14,5 +16,10 @@ public class HibernatePasajerosRepository {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	
+	public List getDrivers(){
+		//session = this.buildSessionFactory();
+		//System.out.println(sessionFactory.getClass().toString());
+		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver").list();
+		return null;
+	}	
 }

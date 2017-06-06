@@ -32,6 +32,14 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="conductoresRepository"
+		class="bd2.Muber.repositories.impl.HibernateDriversRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
 
 	<bean id="dtoFactory" class="bd2.Muber.dto.DTOFactory">
 	</bean>
@@ -71,16 +79,20 @@
 			</props>
 		</property>
 	</bean>
+<<<<<<< HEAD
 	
 	
+=======
+ 
+>>>>>>> c2ad1f0918d3caa4f7035846659440c22a27346c
 	<bean id="serviceLocator" class="bd2.Muber.services.ServiceLocator"
 		factory-method="getInstance">
 		<property name="pasajerosService">
 			<ref bean="pasajerosService" />
 		</property>
 	</bean>
-		
+			
 </beans>
-   
+
 
 	
