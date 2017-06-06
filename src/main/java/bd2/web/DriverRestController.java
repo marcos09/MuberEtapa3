@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import bd2.Muber.model.Driver;
 import bd2.Muber.repositories.impl.HibernateDriversRepository;
 import bd2.Muber.repositories.impl.HibernatePasajerosRepository;
+import bd2.Muber.services.impl.PasajerosServiceImpl;
 
 
 @ControllerAdvice
@@ -27,7 +28,7 @@ import bd2.Muber.repositories.impl.HibernatePasajerosRepository;
 
 public class DriverRestController extends MuberRestController{
 	
-	HibernatePasajerosRepository driverRepository = new HibernatePasajerosRepository();
+	PasajerosServiceImpl driverRepository = new PasajerosServiceImpl();
 	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public String driver() {

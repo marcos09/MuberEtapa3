@@ -1,14 +1,18 @@
 package bd2.Muber.services;
 
+import org.hibernate.secure.internal.DisabledJaccServiceImpl;
 import org.springframework.beans.factory.FactoryBean;
+
+import bd2.Muber.services.impl.PasajerosServiceImpl;
+import bd2.Muber.services.impl.TripsServiceImpl;
 
 @SuppressWarnings("rawtypes")
 public class ServiceLocator {
 	private static ServiceLocator instance = new ServiceLocator( );
 	
-	private FactoryBean pasajeroService;
-	private FactoryBean driverService;
-	private FactoryBean tripService;
+	protected PasajerosServiceImpl pasajerosService;
+	private DisabledJaccServiceImpl driverService;
+	private TripsServiceImpl tripService;
 	
 	public static ServiceLocator  getInstance(){
 		return instance;
@@ -19,53 +23,35 @@ public class ServiceLocator {
 		
 	}
 
-	
-	/**
-	 * @return the pasajeroService
-	 */
-	public FactoryBean getPasajeroService() {
-		return pasajeroService;
-	}
 
-	
-	/**
-	 * @param pasajeroService the pasajeroService to set
-	 */
-	public void setPasajeroService(FactoryBean pasajeroService) {
-		this.pasajeroService = pasajeroService;
+	public PasajerosServiceImpl getPasajerosService() {
+		return pasajerosService;
 	}
 
 
-	/**
-	 * @return the driverService
-	 */
-	public FactoryBean getDriverService() {
+	public void setPasajerosService(PasajerosServiceImpl pasajerosService) {
+		this.pasajerosService = pasajerosService;
+	}
+
+
+	public DisabledJaccServiceImpl getDriverService() {
 		return driverService;
 	}
 
 
-	/**
-	 * @param driverService the driverService to set
-	 */
-	public void setDriverService(FactoryBean driverService) {
+	public void setDriverService(DisabledJaccServiceImpl driverService) {
 		this.driverService = driverService;
 	}
 
 
-	/**
-	 * @return the tripService
-	 */
-	public FactoryBean getTripService() {
+	public TripsServiceImpl getTripService() {
 		return tripService;
 	}
 
 
-	/**
-	 * @param tripService the tripService to set
-	 */
-	public void setTripService(FactoryBean tripService) {
+	public void setTripService(TripsServiceImpl tripService) {
 		this.tripService = tripService;
 	}
 
-
+	
 }

@@ -61,7 +61,7 @@
 		</property>
 	</bean>
 	
-<!-- 	<bean id="pasajerosServiceTarget" class="bd2.Muber.services.impl.PasajerosServiceImpl"
+	<bean id="pasajerosServiceTarget" class="bd2.Muber.services.impl.PasajerosServiceImpl"
 		parent="baseService">
 	</bean>
 	 
@@ -88,8 +88,8 @@
 			<ref bean="pasajerosService" />
 		</property>
 	</bean>
--->			
+			
 </beans>
-   
+
 
 	
