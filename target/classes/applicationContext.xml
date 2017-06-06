@@ -32,6 +32,14 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="conductoresRepository"
+		class="bd2.Muber.repositories.impl.HibernateDriversRepository">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
 
 	<bean id="dtoFactory" class="bd2.Muber.dto.DTOFactory">
 	</bean>
