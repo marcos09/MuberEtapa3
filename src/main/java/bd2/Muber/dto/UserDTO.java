@@ -5,6 +5,7 @@ import bd2.Muber.model.User;
 
 public class UserDTO {
 	
+	private Long idUser;
 	protected String name;
 	protected String password; 
 	protected Date date;
@@ -18,6 +19,20 @@ public class UserDTO {
 	}
 
 	
+	/**
+	 * @return the idUser
+	 */
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	/**
+	 * @param idUser the idUser to set
+	 */
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
+	}
+
 	/**
 	 * @return the name
 	 */

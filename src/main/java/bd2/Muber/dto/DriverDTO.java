@@ -16,6 +16,7 @@ import bd2.Muber.model.Trip;
  */
 public class DriverDTO extends UserDTO{
 	
+	private Long idUser;
 	private String license;
 	private List<TripDTO> trips;
 	
@@ -30,6 +31,7 @@ public class DriverDTO extends UserDTO{
 		this.setDate(aDriver.getDate());
 		this.setLicense(aDriver.getLicense());
 		this.setTrips(this.transformCollectionDTO(aDriver.getTrips()));
+		this.setIdUser(aDriver.getIdUser());
 	}
 	
 	

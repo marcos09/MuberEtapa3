@@ -11,6 +11,7 @@ import java.util.HashSet;
 
 public class Driver extends User{
 	
+	private Long idUser;
 	private String license;
 	private Collection<Trip> trips; 
 	
