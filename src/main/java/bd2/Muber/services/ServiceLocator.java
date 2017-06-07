@@ -1,18 +1,15 @@
 package bd2.Muber.services;
 
-import org.hibernate.secure.internal.DisabledJaccServiceImpl;
-import org.springframework.beans.factory.FactoryBean;
-
+import bd2.Muber.services.impl.DriversServiceImpl;
 import bd2.Muber.services.impl.PasajerosServiceImpl;
 import bd2.Muber.services.impl.TripsServiceImpl;
 
-@SuppressWarnings("rawtypes")
 public class ServiceLocator {
 	private static ServiceLocator instance = new ServiceLocator( );
 	
 	protected PasajerosServiceImpl pasajerosService;
-	private DisabledJaccServiceImpl driverService;
-	private TripsServiceImpl tripService;
+	protected DriversServiceImpl driversService;
+	protected TripsServiceImpl tripsService;
 	
 	public static ServiceLocator  getInstance(){
 		return instance;
@@ -34,23 +31,23 @@ public class ServiceLocator {
 	}
 
 
-	public DisabledJaccServiceImpl getDriverService() {
-		return driverService;
+	public DriversServiceImpl getDriverService() {
+		return driversService;
 	}
 
 
-	public void setDriverService(DisabledJaccServiceImpl driverService) {
-		this.driverService = driverService;
+	public void setDriverService(DriversServiceImpl driverService) {
+		this.driversService = driverService;
 	}
 
 
 	public TripsServiceImpl getTripService() {
-		return tripService;
+		return tripsService;
 	}
 
 
 	public void setTripService(TripsServiceImpl tripService) {
-		this.tripService = tripService;
+		this.tripsService = tripService;
 	}
 
 	

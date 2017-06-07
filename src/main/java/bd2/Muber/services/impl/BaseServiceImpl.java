@@ -11,6 +11,7 @@ public abstract class BaseServiceImpl {
 	private HibernateTripsRepository tripsRepository;
 	private DTOFactory dtoFactory;
 	
+	
 	public HibernatePasajerosRepository getPasajerosRepository() {
 		return pasajerosRepository;
 	}
@@ -20,12 +21,24 @@ public abstract class BaseServiceImpl {
 		this.pasajerosRepository = pasajerosRepository;
 	}
 	
+	
 	public HibernateDriversRepository getDriversRepository(){
 		return driversRepository;
 	}
 	
+	
+	public void setDriversRepository(HibernateDriversRepository driversRepository) {
+		this.driversRepository = driversRepository;
+	}
+	
+	
 	public HibernateTripsRepository getTripsRepository(){
 		return tripsRepository;
+	}
+	
+	
+	public void setTripsRepository(HibernateTripsRepository tripsRepository) {
+		this.tripsRepository = tripsRepository;
 	}
 	
 	
