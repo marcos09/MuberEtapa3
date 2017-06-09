@@ -34,7 +34,7 @@ public class DriverRestController extends MuberRestController{
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public String driver() {
 		
-		System.out.println(ServiceLocator.getInstance().getDriversService());
+		ServiceLocator.getInstance().getDriversService().getDrivers();
 		Map<String, Object> aMap = new HashMap<String, Object>();
 		//driverServ.getDriver();
 		/*

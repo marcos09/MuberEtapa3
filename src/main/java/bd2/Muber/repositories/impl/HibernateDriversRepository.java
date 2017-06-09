@@ -25,7 +25,7 @@ public class HibernateDriversRepository {
 	public List getDrivers(){
 		//session = this.buildSessionFactory();
 		//System.out.println(sessionFactory.getClass().toString());
-		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver").list();
+		sessionFactory.getCurrentSession().createQuery("from Driver").list();
 		return null;
 	}
 

@@ -8,4 +8,7 @@ import bd2.Muber.repositories.impl.HibernateDriversRepository;
  */
 public class DriversServiceImpl extends BaseServiceImpl{
 	
+	public void getDrivers(){
+		this.driversRepository.getDrivers();
+	}
 }
