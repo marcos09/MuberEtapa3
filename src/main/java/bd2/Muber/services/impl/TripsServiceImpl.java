@@ -4,6 +4,6 @@ package bd2.Muber.services.impl;
  * @author yato
  *
  */
-public abstract class TripsServiceImpl {
+public abstract class TripsServiceImpl extends BaseServiceImpl{
 
 }

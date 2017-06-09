@@ -6,12 +6,6 @@ import bd2.Muber.repositories.impl.HibernateDriversRepository;
  * @author yato
  *
  */
-public class DriversServiceImpl {
+public class DriversServiceImpl extends BaseServiceImpl{
 	
-	HibernateDriversRepository driversRepository = new HibernateDriversRepository(); 
-	
-	public void getDriver(){
-		driversRepository.getDrivers();
-	}
-
 }

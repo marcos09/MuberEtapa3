@@ -1,5 +1,6 @@
 package bd2.web;
 
+import java.security.Provider.Service;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,7 @@ import com.google.gson.Gson;
 import bd2.Muber.model.Driver;
 import bd2.Muber.repositories.impl.HibernateDriversRepository;
 import bd2.Muber.repositories.impl.HibernatePasajerosRepository;
+import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.DriversServiceImpl;
 import bd2.Muber.services.impl.PasajerosServiceImpl;
 
@@ -28,14 +30,13 @@ import bd2.Muber.services.impl.PasajerosServiceImpl;
 
 
 public class DriverRestController extends MuberRestController{
-	
-	DriversServiceImpl driverServ = new DriversServiceImpl();
-	
+		
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public String driver() {
 		
+		System.out.println(ServiceLocator.getInstance().getDriversService());
 		Map<String, Object> aMap = new HashMap<String, Object>();
-		driverServ.getDriver();
+		//driverServ.getDriver();
 		/*
 		Iterator iterator = drivers.iterator();
 		while(iterator.hasNext()){

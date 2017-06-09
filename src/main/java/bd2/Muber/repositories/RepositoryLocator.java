@@ -6,12 +6,16 @@ import bd2.Muber.repositories.impl.HibernateTripsRepository;
 
 public class RepositoryLocator {
 	
-	private static RepositoryLocator instance = new RepositoryLocator( );
+	 
+	private static RepositoryLocator instance;
 	private HibernatePasajerosRepository pasajerosRepository;
 	private HibernateDriversRepository driversRepository;
 	private HibernateTripsRepository tripsRepository;
 	
 	public static RepositoryLocator  getInstance(){
+		if(instance == null){
+			instance  = new RepositoryLocator();
+		}
 		return instance;
 	}
 	

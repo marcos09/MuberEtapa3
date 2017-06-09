@@ -5,13 +5,16 @@ import bd2.Muber.services.impl.PasajerosServiceImpl;
 import bd2.Muber.services.impl.TripsServiceImpl;
 
 public class ServiceLocator {
-	private static ServiceLocator instance = new ServiceLocator( );
+	private static ServiceLocator instance;
 	
 	protected PasajerosServiceImpl pasajerosService;
 	protected DriversServiceImpl driversService;
 	protected TripsServiceImpl tripsService;
 	
 	public static ServiceLocator  getInstance(){
+		if(instance == null){
+			instance  = new ServiceLocator();
+		}
 		return instance;
 	}
 	
@@ -19,7 +22,6 @@ public class ServiceLocator {
 	private ServiceLocator() { 
 		
 	}
-
 
 	public PasajerosServiceImpl getPasajerosService() {
 		return pasajerosService;
@@ -31,24 +33,24 @@ public class ServiceLocator {
 	}
 
 
-	public DriversServiceImpl getDriverService() {
+	public DriversServiceImpl getDriversService() {
 		return driversService;
 	}
 
 
-	public void setDriverService(DriversServiceImpl driverService) {
-		this.driversService = driverService;
+	public void setDriversService(DriversServiceImpl driversService) {
+		this.driversService = driversService;
 	}
 
 
-	public TripsServiceImpl getTripService() {
+	public TripsServiceImpl getTripsService() {
 		return tripsService;
 	}
 
 
-	public void setTripService(TripsServiceImpl tripService) {
-		this.tripsService = tripService;
+	public void setTripsService(TripsServiceImpl tripsService) {
+		this.tripsService = tripsService;
 	}
 
-	
+
 }
