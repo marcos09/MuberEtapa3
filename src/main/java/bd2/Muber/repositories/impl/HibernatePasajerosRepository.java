@@ -16,10 +16,10 @@ public class HibernatePasajerosRepository  {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public List getDrivers(){
+	public List getPassenger(){
 		//session = this.buildSessionFactory();
 		//System.out.println(sessionFactory.getClass().toString());
-		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver").list();
+		List result = (List) sessionFactory.getCurrentSession().createQuery("from Passenger").list();
 		return null;
 	}	
 }

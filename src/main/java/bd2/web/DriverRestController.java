@@ -18,14 +18,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.google.gson.Gson;
 
-import bd2.Muber.model.Driver;
 import bd2.Muber.dto.DriverAllDTO;
 import bd2.Muber.dto.DriverDTO;
-import bd2.Muber.repositories.impl.HibernateDriversRepository;
-import bd2.Muber.repositories.impl.HibernatePasajerosRepository;
 import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.DriversServiceImpl;
-import bd2.Muber.services.impl.PasajerosServiceImpl;
+
 
 
 @ControllerAdvice
@@ -37,17 +34,32 @@ import bd2.Muber.services.impl.PasajerosServiceImpl;
 public class DriverRestController extends MuberRestController{
 	DriversServiceImpl driverService = ServiceLocator.getInstance().getDriversService();
 	
+	
+	/**
+	 *retorna una lista que contiene los conductores de Muber 
+	 *
+	 */
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<ArrayList<DriverDTO>> getDrivers() {
 		ArrayList<DriverDTO> result = driverService.getDrivers();
 		return new ResponseEntity<ArrayList<DriverDTO>>(result,HttpStatus.OK );
 	}
 	
-	 
+	
+	/**
+	 * Genera un nuevo viaje con el conductor y lo agrega en la colección 
+	 *
+	 */
 	@RequestMapping(value = "/top10", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public String top10() {
 		return null;
 	}
+	
+	
+	/**
+	 * Genera un nuevo viaje con el conductor y lo agrega en la colección 
+	 *
+	 */
 	@RequestMapping(value = "/detalle", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<DriverAllDTO> createTrip(@RequestParam(value="conductorId", required=true) Long idDriver) {
 		DriverAllDTO result = driverService.getDetails(idDriver);

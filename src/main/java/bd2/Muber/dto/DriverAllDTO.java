@@ -9,15 +9,16 @@ import bd2.Muber.model.Driver;
 import bd2.Muber.model.Trip;
 
 public class DriverAllDTO {
-
-	public DriverAllDTO(){
-		
-	}
 	private String name;
 	protected Date date;
 	private Float score;
 	private List<TripDTO> trips;
 
+	
+	public DriverAllDTO(){
+		
+	}
+	
 
 	public DriverAllDTO(Driver aDriver) {
 		this.setName(aDriver.getName());
@@ -26,6 +27,7 @@ public class DriverAllDTO {
 		this.setTrips(this.transformCollectionDTO(aDriver.getTrips()));
 	}
 
+	
 	public List<TripDTO> transformCollectionDTO(Collection<Trip> trips){
 		List<TripDTO> tripsDTO = new LinkedList<TripDTO>();
 		for (Trip aTrip : trips) {
@@ -34,6 +36,7 @@ public class DriverAllDTO {
 		return tripsDTO;
 	}
 
+	
 	/**
 	 * @return the name
 	 */

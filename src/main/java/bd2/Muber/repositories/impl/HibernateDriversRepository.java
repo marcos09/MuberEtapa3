@@ -3,11 +3,8 @@ package bd2.Muber.repositories.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-
 import org.hibernate.SessionFactory;
-
 //import antlr.collections.List;
 import bd2.Muber.model.Driver;
 

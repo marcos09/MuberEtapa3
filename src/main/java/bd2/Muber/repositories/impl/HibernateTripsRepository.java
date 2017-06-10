@@ -15,13 +15,16 @@ public class HibernateTripsRepository {
 
 	SessionFactory sessionFactory;
 
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
 
 	public void add(Trip trip) {
 		sessionFactory.getCurrentSession();

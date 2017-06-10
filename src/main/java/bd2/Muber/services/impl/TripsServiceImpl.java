@@ -10,8 +10,8 @@ import bd2.Muber.model.Trip;
  */
 public class TripsServiceImpl extends BaseServiceImpl{
 	
-	public TripDTO addTrip(TripDTO tripDTO, Long idUser){
-		Driver driver = this.driversRepository.getUser(idUser);
+	public TripDTO addTrip(TripDTO tripDTO, Long idDriver){
+		Driver driver = this.driversRepository.getUser(idDriver);
 		if(driver == null){
 			return null;
 		}

@@ -13,6 +13,10 @@ import bd2.Muber.model.Driver;
  */
 public class DriversServiceImpl extends BaseServiceImpl{
 	
+	/**
+	 * retorna una lista que contiene los conductores de Muber 
+	 *
+	 */
 	public ArrayList<DriverDTO> getDrivers(){
 		ArrayList<DriverDTO> driversDTO = new ArrayList<DriverDTO>();
 		Iterator<Driver> iterator = this.driversRepository.getDrivers().iterator();
@@ -23,6 +27,11 @@ public class DriversServiceImpl extends BaseServiceImpl{
 		return driversDTO;
 	}
 	
+	
+	/**
+	 * retorna los detalles del conductor 
+	 *
+	 */
 	public DriverAllDTO getDetails(Long idUser){
 		Driver driver = this.driversRepository.getDetail(idUser);
 		if(driver != null){
