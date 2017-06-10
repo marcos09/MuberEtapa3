@@ -12,8 +12,8 @@ import bd2.Muber.model.Driver;
  * @author yato
  *
  */
-public class HibernateDriversRepository extends HibernateGenericRepository{
-
+public class HibernateDriversRepository extends HibernateGenericRepository {
+/*
 	SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -24,6 +24,7 @@ public class HibernateDriversRepository extends HibernateGenericRepository{
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	*/
 	
 	public ArrayList<Driver> getDrivers(){
 		

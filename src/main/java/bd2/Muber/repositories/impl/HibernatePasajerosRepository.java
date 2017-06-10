@@ -1,11 +1,10 @@
 package bd2.Muber.repositories.impl;
 
-import org.hibernate.SessionFactory;
-
 import antlr.collections.List;
 
-public class HibernatePasajerosRepository  {
+public class HibernatePasajerosRepository extends HibernateGenericRepository {
 	
+	/*
 	protected SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -15,6 +14,7 @@ public class HibernatePasajerosRepository  {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	*/
 	
 	public List getPassenger(){
 		//session = this.buildSessionFactory();
