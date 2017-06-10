@@ -5,6 +5,8 @@ package bd2.Muber.repositories.impl;
 
 import org.hibernate.SessionFactory;
 
+import bd2.Muber.model.Trip;
+
 /**
  * @author yato
  *
@@ -19,6 +21,10 @@ public class HibernateTripsRepository {
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
+	}
+
+	public void add(Trip trip) {
+		sessionFactory.getCurrentSession()
 	}
 	
 	/*

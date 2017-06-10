@@ -19,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.google.gson.Gson;
 
 import bd2.Muber.model.Driver;
+import bd2.Muber.dto.DriverAllDTO;
 import bd2.Muber.dto.DriverDTO;
 import bd2.Muber.repositories.impl.HibernateDriversRepository;
 import bd2.Muber.repositories.impl.HibernatePasajerosRepository;
@@ -45,15 +46,15 @@ public class DriverRestController extends MuberRestController{
 	 
 	@RequestMapping(value = "/top10", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public String top10() {
-		
+		return null;
 	}
 	@RequestMapping(value = "/detalle", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<DriverDTO> createTrip(@RequestParam(value="conductorId", required=true) Long idDriver) {
-		DriverDTO result = driverService.getDetails(idDriver);
+	public ResponseEntity<DriverAllDTO> createTrip(@RequestParam(value="conductorId", required=true) Long idDriver) {
+		DriverAllDTO result = driverService.getDetails(idDriver);
 		if( result != null){
-			return new ResponseEntity<DriverDTO>(result, HttpStatus.OK);
+			return new ResponseEntity<DriverAllDTO>(result, HttpStatus.OK);
 		}
-		return new ResponseEntity<DriverDTO>(result, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<DriverAllDTO>(result, HttpStatus.NOT_FOUND);
 		
 	}
 

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import bd2.Muber.dto.TripDTO;
+
 /**
  * @author yato
  *
@@ -12,7 +14,7 @@ import java.util.Set;
 public class Trip {
 
 	private Long idTrip;
-	private int cost;
+	private Float cost;
 	private int numberOfpassengers;
 	private Date date;
 	private String from;
@@ -36,7 +38,7 @@ public class Trip {
 	 * @param trip_from
 	 * @param trip_to
 	 */
-	public Trip(int trip_cost, int trip_numberOfpassengers,Date date, String trip_from,
+	public Trip(Float trip_cost, int trip_numberOfpassengers,Date date, String trip_from,
 			String trip_to) {
 		super();
 		this.setCost(trip_cost);
@@ -46,7 +48,15 @@ public class Trip {
 		this.setTo(trip_to);
 	}
 
-	
+	public Trip(TripDTO tripDTO){
+		super();
+		this.setCost(tripDTO.getCost());
+		this.setDate(tripDTO.getDate());
+		this.setNumberOfpassengers(tripDTO.getNumberOfpassengers());
+		this.setFrom(tripDTO.getFrom());
+		this.setTo(tripDTO.getTo());
+
+	}
 	
 	public Long getIdTrip() {
 		return idTrip;
@@ -58,12 +68,12 @@ public class Trip {
 	}
 
 
-	public int getCost() {
+	public Float getCost() {
 		return cost;
 	}
 
 
-	public void setCost(int cost) {
+	public void setCost(Float cost) {
 		this.cost = cost;
 	}
 

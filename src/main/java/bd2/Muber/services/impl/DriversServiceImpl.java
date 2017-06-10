@@ -2,6 +2,8 @@ package bd2.Muber.services.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import bd2.Muber.dto.DriverAllDTO;
 import bd2.Muber.dto.DriverDTO;
 import bd2.Muber.model.Driver;
 
@@ -21,10 +23,10 @@ public class DriversServiceImpl extends BaseServiceImpl{
 		return driversDTO;
 	}
 	
-	public DriverDTO getDetails(Long idUser){
+	public DriverAllDTO getDetails(Long idUser){
 		Driver driver = this.driversRepository.getDetail(idUser);
 		if(driver != null){
-			return new DriverDTO(driver);
+			return new DriverAllDTO(driver);
 		}
 		return null;
 		
