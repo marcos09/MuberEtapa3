@@ -11,8 +11,8 @@
 		<discriminator column="tipoUsuario" type="string"/>
 		
 		<property name="name" not-null="true" type="string" />
-		<property name="password" type="string" />
-		<property name="date" type="date" />
+		<property name="password" not-null="true" type="string" />
+		<property name="date" not-null="true" type="date" />
 		<subclass name="Passenger" discriminator-value="Passenger">
 			<property name="credits" type="double"/>
 		</subclass>

@@ -1,16 +1,21 @@
 package bd2.Muber.repositories.impl;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+
 import org.hibernate.SessionFactory;
 
 
 import antlr.collections.List;
+import bd2.Muber.model.Driver;
 
 /**
  * @author yato
  *
  */
-public class HibernateDriversRepository {
+public class HibernateDriversRepository extends HibernateGenericRepository{
 
 	SessionFactory sessionFactory;
 
@@ -22,11 +27,16 @@ public class HibernateDriversRepository {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public List getDrivers(){
-		//session = this.buildSessionFactory();
-		//System.out.println(sessionFactory.getClass().toString());
-		sessionFactory.getCurrentSession().createQuery("from Driver").list();
-		return null;
+	public ArrayList<Driver> getDrivers(){
+		
+		ArrayList<Driver> drivers = new ArrayList<Driver>();
+		Iterator iterator = sessionFactory.getCurrentSession().createQuery("from Driver").iterate();
+		while(iterator.hasNext()){
+			Driver driver = (Driver) iterator.next();
+			drivers.add(driver);
+		}
+		
+		return drivers;
 	}
 
 }

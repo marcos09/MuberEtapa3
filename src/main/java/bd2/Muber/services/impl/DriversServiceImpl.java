@@ -1,6 +1,9 @@
 package bd2.Muber.services.impl;
 
-import bd2.Muber.repositories.impl.HibernateDriversRepository;
+import java.util.ArrayList;
+import java.util.Iterator;
+import bd2.Muber.dto.DriverDTO;
+import bd2.Muber.model.Driver;
 
 /**
  * @author yato
@@ -8,7 +11,13 @@ import bd2.Muber.repositories.impl.HibernateDriversRepository;
  */
 public class DriversServiceImpl extends BaseServiceImpl{
 	
-	public void getDrivers(){
-		this.driversRepository.getDrivers();
+	public ArrayList<DriverDTO> getDrivers(){
+		ArrayList<DriverDTO> driversDTO = new ArrayList<DriverDTO>();
+		Iterator<Driver> iterator = this.driversRepository.getDrivers().iterator();
+		while(iterator.hasNext()){
+			Driver d = (Driver) iterator.next();
+			driversDTO.add(new DriverDTO(d));
+		}
+		return driversDTO;
 	}
 }
