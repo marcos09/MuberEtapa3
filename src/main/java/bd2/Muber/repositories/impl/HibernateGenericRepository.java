@@ -3,14 +3,14 @@
  */
 package bd2.Muber.repositories.impl;
 
-import org.hibernate.SessionFactory;
+//import org.hibernate.SessionFactory;
 
 /**
  * @author marcos
  *
  */
 public class HibernateGenericRepository {
-	
+	/*
 	SessionFactory sessionFactory;
 
 	public SessionFactory getSessionFactory() {
@@ -21,4 +21,5 @@ public class HibernateGenericRepository {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	*/
 }

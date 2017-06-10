@@ -3,6 +3,8 @@
  */
 package bd2.Muber.repositories.impl;
 
+import org.hibernate.SessionFactory;
+
 import bd2.Muber.model.Trip;
 
 /**
@@ -10,7 +12,7 @@ import bd2.Muber.model.Trip;
  *
  */
 public class HibernateTripsRepository extends HibernateGenericRepository {
-	/*
+	
 	SessionFactory sessionFactory;
 
 	
@@ -22,7 +24,7 @@ public class HibernateTripsRepository extends HibernateGenericRepository {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	*/
+	
 
 	public void add(Trip trip) {
 		sessionFactory.getCurrentSession();

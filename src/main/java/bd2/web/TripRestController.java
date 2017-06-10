@@ -63,7 +63,7 @@ public class TripRestController extends MuberRestController{
 	 *
 	 */
 	@RequestMapping(value = "/agregarPasajero", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public String addPassenger(@RequestParam(value="viajeId", required=true) int idTrip, @RequestParam(value="pasajeroId", required=true) int idPassenger) {
+	public String createTrip(@RequestParam(value="viajeId", required=true) int idTrip, @RequestParam(value="pasajeroId", required=true) int idPassenger) {
 
 	
 		
