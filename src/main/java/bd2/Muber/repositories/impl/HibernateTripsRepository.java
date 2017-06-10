@@ -24,7 +24,7 @@ public class HibernateTripsRepository {
 	}
 
 	public void add(Trip trip) {
-		sessionFactory.getCurrentSession()
+		sessionFactory.getCurrentSession();
 	}
 	
 	/*

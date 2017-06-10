@@ -21,4 +21,6 @@ public class TripsServiceImpl extends BaseServiceImpl{
 			this.tripsRepository.add(trip);
 		}
 	}
+	
+	
 }
