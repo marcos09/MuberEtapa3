@@ -6,9 +6,9 @@ import bd2.Muber.repositories.impl.HibernatePasajerosRepository;
 import bd2.Muber.repositories.impl.HibernateTripsRepository;
 
 public abstract class BaseServiceImpl {
-	private HibernatePasajerosRepository pasajerosRepository;
-	private HibernateDriversRepository driversRepository;
-	private HibernateTripsRepository tripsRepository;
+	protected HibernatePasajerosRepository pasajerosRepository;
+	protected HibernateDriversRepository driversRepository;
+	protected HibernateTripsRepository tripsRepository;
 	private DTOFactory dtoFactory;
 	
 	

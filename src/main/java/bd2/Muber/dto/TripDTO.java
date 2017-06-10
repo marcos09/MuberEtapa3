@@ -19,7 +19,7 @@ import bd2.Muber.model.Trip;
  */
 public class TripDTO {
 
-	private int cost;
+	private Float cost;
 	private int numberOfpassengers;
 	private Date date;
 	private String from;
@@ -50,16 +50,16 @@ public class TripDTO {
 	/**
 	 * @return the cost
 	 */
-	public int getCost() {
+	public Float getCost() {
 		return cost;
 	}
 
 
 	/**
-	 * @param cost the cost to set
+	 * @param cost2 the cost to set
 	 */
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setCost(Float cost2) {
+		this.cost = cost2;
 	}
 
 

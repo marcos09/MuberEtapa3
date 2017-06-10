@@ -11,10 +11,9 @@ import java.util.HashSet;
 
 public class Driver extends User{
 	
-	private Long idUser;
 	private String license;
 	private Collection<Trip> trips; 
-	
+	private Float score;
 	
 	public Driver(){
 		this.setTrips(new HashSet<Trip>());
@@ -31,9 +30,30 @@ public class Driver extends User{
 		super(driver_name, driver_password, driver_date);
 		this.setLicense(driver_license);
 	}
+	public Driver(String driver_name,  String driver_password, Date driver_date, String driver_license, Float score){
+		super(driver_name, driver_password, driver_date);
+		this.setLicense(driver_license);
+		this.setScore(score);
+	}
+	
+	
+	
+	/**
+	 * @return the score
+	 */
+	public Float getScore() {
+		return score;
+	}
 
-	
-	
+
+	/**
+	 * @param score the score to set
+	 */
+	public void setScore(Float score) {
+		this.score = score;
+	}
+
+
 	public String getLicense() {
 		return license;
 	}

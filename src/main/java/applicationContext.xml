@@ -33,14 +33,14 @@
 		</property>
 	</bean>
 	
-	<bean id="driversRepository"
+	<bean id="conductoresRepository"
 		class="bd2.Muber.repositories.impl.HibernateDriversRepository">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
 	
-	<bean id="tripsRepository"
+	<bean id="viajesRepository"
 		class="bd2.Muber.repositories.impl.HibernateTripsRepository">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
@@ -56,10 +56,10 @@
 			<ref bean="pasajerosRepository" />
 		</property>
 		<property name="tripsRepository">
-			<ref bean="tripsRepository" />
+			<ref bean="viajesRepository" />
 		</property>
 		<property name="driversRepository">
-			<ref bean="driversRepository" />
+			<ref bean="conductoresRepository" />
 		</property>
 		<property name="dtoFactory">
 			<ref bean="dtoFactory" />
@@ -72,16 +72,40 @@
 			<ref bean="pasajerosRepository" />
 		</property>
 		<property name="tripsRepository">
-			<ref bean="tripsRepository" />
+			<ref bean="viajesRepository" />
 		</property>
 		<property name="driversRepository">
-			<ref bean="driversRepository" />
+			<ref bean="conductoresRepository" />
 		</property>
 	</bean>
 	
 	<bean id="pasajerosServiceTarget" class="bd2.Muber.services.impl.PasajerosServiceImpl"
 		parent="baseService">
 	</bean>
+	
+	<bean id="conductoresServiceTarget" class="bd2.Muber.services.impl.DriversServiceImpl"
+		parent="baseService">
+	</bean>
+	
+	<!-- 	<bean id="viajesServiceTarget" class="bd2.Muber.services.impl.TripsServiceImpl"
+		parent="baseService">
+	</bean>
+	 -->
+	<bean id="conductoresService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="conductoresServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	
 	 
 	<bean id="pasajerosService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
@@ -103,16 +127,16 @@
 		<property name="pasajerosService">
 			<ref bean="pasajerosService" />
 		</property>
-	<!-- 	
 		<property name="driversService">
-			<ref bean="driversService" />
+			<ref bean="conductoresService" />
 		</property>
+		<!-- 
 		<property name="tripsService">
-			<ref bean="tripsService" />
+			<ref bean="viajesService" />
 		</property>
-		
 		 -->
 	</bean>
+	
 			
 </beans>
 	

@@ -9,7 +9,7 @@
 			<generator class="native" />
 		</id>
 		
-		<property name="cost" type="int" />
+		<property name="cost" type="float" />
 		<property name="numberOfpassengers" type="int" />
 		<property name="date" type="date" />
 		<property name="from" type="string" />
