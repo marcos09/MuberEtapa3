@@ -20,4 +20,14 @@ public class DriversServiceImpl extends BaseServiceImpl{
 		}
 		return driversDTO;
 	}
+	
+	public DriverDTO getDetails(Long idUser){
+		Driver driver = this.driversRepository.getDetail(idUser);
+		if(driver != null){
+			return new DriverDTO(driver);
+		}
+		return null;
+		
+	}
+	
 }

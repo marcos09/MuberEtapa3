@@ -20,4 +20,9 @@ public class HibernateTripsRepository {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+	
+	/*
+	 * Obtener viajes abiertos formato SQL
+	 * SELECT `TRIP_ID` FROM `TRIP` INNER JOIN PASSENGERTRIP ON(`TRIP_ID`= `idTrip`) WHERE `date` > CURDATE() GROUP by TRIP_ID, numberOfpassengers HAVING count(*) < `numberOfpassengers`"
+	 */
 }

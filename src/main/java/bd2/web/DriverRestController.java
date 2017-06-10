@@ -34,27 +34,27 @@ import bd2.Muber.services.impl.PasajerosServiceImpl;
 
 
 public class DriverRestController extends MuberRestController{
-		
+	DriversServiceImpl driverService = ServiceLocator.getInstance().getDriversService();
+	
 	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<ArrayList<DriverDTO>> getDrivers() {
-		ArrayList<DriverDTO> result = ServiceLocator.getInstance().getDriversService().getDrivers();
+		ArrayList<DriverDTO> result = driverService.getDrivers();
 		return new ResponseEntity<ArrayList<DriverDTO>>(result,HttpStatus.OK );
 	}
 	
 	 
 	@RequestMapping(value = "/top10", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public String top10() {
-		Map<String, Object> aMap = new HashMap<String, Object>();
-		aMap.put("Acá debería devolver los mejores 10 conductores del sistema", "OK");
-		return new Gson().toJson(aMap);
-	
+		
 	}
 	@RequestMapping(value = "/detalle", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public String createTrip(@RequestParam(value="conductorId", required=true) int idDriver) {
+	public ResponseEntity<DriverDTO> createTrip(@RequestParam(value="conductorId", required=true) Long idDriver) {
+		DriverDTO result = driverService.getDetails(idDriver);
+		if( result != null){
+			return new ResponseEntity<DriverDTO>(result, HttpStatus.OK);
+		}
+		return new ResponseEntity<DriverDTO>(result, HttpStatus.NOT_FOUND);
 		
-		Map<String, Object> aMap = new HashMap<String, Object>();
-		aMap.put("Acá se devuelve el detalle del conductor con id: ", idDriver );
-		return new Gson().toJson(aMap);
 	}
 
 	
