@@ -87,10 +87,10 @@
 		parent="baseService">
 	</bean>
 	
-	<!-- 	<bean id="viajesServiceTarget" class="bd2.Muber.services.impl.TripsServiceImpl"
+	<bean id="viajesServiceTarget" class="bd2.Muber.services.impl.TripsServiceImpl"
 		parent="baseService">
 	</bean>
-	 -->
+	
 	<bean id="conductoresService"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager">
@@ -121,6 +121,22 @@
 			</props>
 		</property>
 	</bean>
+	
+	<bean id="viajesService"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref bean="viajesServiceTarget" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	
  
 	<bean id="serviceLocator" class="bd2.Muber.services.ServiceLocator"
 		factory-method="getInstance">
@@ -130,11 +146,11 @@
 		<property name="driversService">
 			<ref bean="conductoresService" />
 		</property>
-		<!-- 
+
 		<property name="tripsService">
 			<ref bean="viajesService" />
 		</property>
-		 -->
+
 	</bean>
 	
 			

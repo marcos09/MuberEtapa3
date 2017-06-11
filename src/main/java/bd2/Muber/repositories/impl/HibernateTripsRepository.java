@@ -3,6 +3,7 @@
  */
 package bd2.Muber.repositories.impl;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import bd2.Muber.model.Trip;
@@ -11,23 +12,23 @@ import bd2.Muber.model.Trip;
  * @author yato
  *
  */
-public class HibernateTripsRepository extends HibernateGenericRepository {
-	
+public class HibernateTripsRepository {
+
 	SessionFactory sessionFactory;
 
-	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
-	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
 
-	public void add(Trip trip) {
-		sessionFactory.getCurrentSession();
+	public Trip add(Trip trip) {
+		Session session = sessionFactory.openSession();
+		session.save(trip);
+		session.close();
+		return null;
 	}
 	
 	/*

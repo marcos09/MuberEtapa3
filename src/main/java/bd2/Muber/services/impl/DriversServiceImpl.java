@@ -27,7 +27,6 @@ public class DriversServiceImpl extends BaseServiceImpl{
 		return driversDTO;
 	}
 	
-	
 	/**
 	 * retorna los detalles del conductor 
 	 *

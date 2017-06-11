@@ -4,8 +4,7 @@ import org.hibernate.SessionFactory;
 
 import antlr.collections.List;
 
-public class HibernatePasajerosRepository extends HibernateGenericRepository {
-	
+public class HibernatePasajerosRepository  {
 	
 	protected SessionFactory sessionFactory;
 
@@ -17,14 +16,10 @@ public class HibernatePasajerosRepository extends HibernateGenericRepository {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	
 	public List getPassenger(){
 		//session = this.buildSessionFactory();
 		//System.out.println(sessionFactory.getClass().toString());
-		
-		
-		//hacer
-		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver").list();
+		List result = (List) sessionFactory.getCurrentSession().createQuery("from Passenger").list();
 		return null;
 	}	
 }

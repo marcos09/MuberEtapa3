@@ -37,8 +37,8 @@ public class TripDTO {
 		this.setCost(aTrip.getCost());
 		this.setNumberOfpassengers(aTrip.getNumberOfpassengers());
 		this.setDate(aTrip.getDate());
-		this.setFrom(aTrip.getFrom());
-		this.setTo(aTrip.getTo());
+		this.setFrom(aTrip.getFromTrip());
+		this.setTo(aTrip.getFromTrip());
 		this.setDriver(aTrip.getDriver());
 		this.setScores(aTrip.getScores());		
 		this.setPassengers(aTrip.getPassengers());

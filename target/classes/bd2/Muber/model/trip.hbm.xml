@@ -12,8 +12,9 @@
 		<property name="cost" type="float" />
 		<property name="numberOfpassengers" type="int" />
 		<property name="date" type="date" />
-		<property name="from" type="string" />
-		<property name="to" type="string" />
+		<property name="fromTrip" type="string" />
+		<property name="destiny" type="string" />
+		<property name="state" type="string" />
 		
 		
 		<!-- <many-to-one name="driver" column="idDriver" not-null="true" cascade="all"></many-to-one>  -->

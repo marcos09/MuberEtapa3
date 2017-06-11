@@ -17,11 +17,12 @@ public class Trip {
 	private Float cost;
 	private int numberOfpassengers;
 	private Date date;
-	private String from;
-	private String to;
+	private String fromTrip;
+	private String destiny;
 	private Collection<Passenger> passengers = new HashSet<Passenger>();
 	private Driver driver;
 	private Set<Score> scores= new HashSet<Score>();
+	private String state = "enable";
 	
 	/**
 	 * 
@@ -44,8 +45,8 @@ public class Trip {
 		this.setCost(trip_cost);
 		this.setDate(date);
 		this.setNumberOfpassengers(trip_numberOfpassengers);
-		this.setFrom(trip_from);
-		this.setTo(trip_to);
+		this.setFromTrip(trip_from);
+		this.setDestiny(trip_to);
 	}
 
 	public Trip(TripDTO tripDTO){
@@ -53,8 +54,8 @@ public class Trip {
 		this.setCost(tripDTO.getCost());
 		this.setDate(tripDTO.getDate());
 		this.setNumberOfpassengers(tripDTO.getNumberOfpassengers());
-		this.setFrom(tripDTO.getFrom());
-		this.setTo(tripDTO.getTo());
+		this.setFromTrip(tripDTO.getFrom());
+		this.setDestiny(tripDTO.getTo());
 
 	}
 	
@@ -98,23 +99,23 @@ public class Trip {
 	}
 
 
-	public String getFrom() {
-		return from;
+	public String getFromTrip() {
+		return fromTrip;
 	}
 
 
-	public void setFrom(String from) {
-		this.from = from;
+	public void setFromTrip(String from) {
+		this.fromTrip = from;
 	}
 
 
-	public String getTo() {
-		return to;
+	public String getDestiny() {
+		return destiny;
 	}
 
 
-	public void setTo(String to) {
-		this.to = to;
+	public void setDestiny(String to) {
+		this.destiny = to;
 	}
 
 
@@ -165,6 +166,23 @@ public class Trip {
 			this.passengers.add(passenger);
 	}
 	
+	
+	/**
+	 * @return the state
+	 */
+	public String getState() {
+		return state;
+	}
+
+
+	/**
+	 * @param state the state to set
+	 */
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
 	/*
 	 *Mensaje que sirve para descontar el crédito a los pasajeros que participaron de un viaje.
 	 *
