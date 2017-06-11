@@ -47,6 +47,7 @@ public class HibernateDriversRepository extends HibernateGenericRepository{
 
 	public Driver getUser(Long idUser) {
 		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver where USER_ID = :idUser").setParameter("idUser", idUser).list();
+		System.out.println("Prueba git");
 		if( result.isEmpty()){
 			return null;
 		}
