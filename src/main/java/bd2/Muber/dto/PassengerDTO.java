@@ -11,18 +11,19 @@ import bd2.Muber.model.Passenger;
  */
 public class PassengerDTO extends UserDTO{
 	private Double credits;
-	private Long idUser;
 	
 	public PassengerDTO(){
 		
 	}
 	
 	public PassengerDTO(Passenger aPassenger){
+		/*
 		this.setName(aPassenger.getName());
 		this.setDate(aPassenger.getDate());
 		this.setPassword(aPassenger.getPassword());
 		this.setCredits(aPassenger.getCredits());
 		this.setIdUser(aPassenger.getIdUser());
+		*/
 	}
 
 	/**

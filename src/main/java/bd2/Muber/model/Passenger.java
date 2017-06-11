@@ -48,6 +48,10 @@ public class Passenger extends User {
 		this.credits = credits;
 	}
 	
+	public void addCredits(Float aMount){
+		this.credits = this.credits + aMount;
+	}
+	
 	
 	
 	

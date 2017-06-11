@@ -22,6 +22,14 @@ public class PasajerosServiceImpl extends BaseServiceImpl{
 	}
 	
 	public PassengerDTO addCredit(Long idUser, Float credit){
-		return null;
+		System.out.println("Estoy en el servicio");
+		Passenger passenger = this.pasajerosRepository.addCredit(idUser, credit);
+		System.out.println("Llegué y retorno null");
+		
+		if(passenger == null){
+			return null;
+		}
+		return new PassengerDTO(passenger);
+		
 	}
 }

@@ -26,8 +26,12 @@ public class PassengerRestController extends MuberRestController{
 	PasajerosServiceImpl passengerService = ServiceLocator.getInstance().getPasajerosService();
 	
 	@RequestMapping(value = "/cargarCredito", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public String createTrip(@RequestParam(value="pasajeroId", required=true) int idPassenger, @RequestParam(value="monto", required=true) Float credits) {		
-		return null;
+	public ResponseEntity<PassengerDTO> addCredit(@RequestParam(value="pasajeroId", required=true) Long idPassenger, @RequestParam(value="monto", required=true) Float credits) {		
+		PassengerDTO passengerDTO = this.passengerService.addCredit(idPassenger, credits);
+		if(passengerDTO == null){
+			return new ResponseEntity<PassengerDTO>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<PassengerDTO>(passengerDTO, HttpStatus.OK);
 	}
 	
 

@@ -60,7 +60,8 @@ public class TripRestController extends MuberRestController{
 	}
 	
 	@RequestMapping(value = "/agregarPasajero", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public String addPassenger(@RequestParam(value="viajeId", required=true) int idTrip, @RequestParam(value="pasajeroId", required=true) int idPassenger) {
+	public String addPassenger(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger) {
+		tripService.addPassenger(idTrip, idPassenger);
 		return null;
 	}
 	
@@ -70,9 +71,15 @@ public class TripRestController extends MuberRestController{
 		return null;
 	}
 	
+	//Ver...Devuelve un 403 no se por que
 	@RequestMapping(value = "/finalizar", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public String closeTrip(@RequestParam(value="viajeId", required=true) int idTrip) {
-		return null;
+	public ResponseEntity<TripDTO> closeTrip(@RequestParam(value="viajeId", required=true) Long idTrip) {
+		
+		TripDTO tripDTO = tripService.closeTrip(idTrip);
+		if(tripDTO == null){
+			return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<TripDTO>(HttpStatus.NO_CONTENT);
 	}
 
 }

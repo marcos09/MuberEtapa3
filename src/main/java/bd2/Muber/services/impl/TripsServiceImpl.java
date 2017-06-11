@@ -37,10 +37,17 @@ public class TripsServiceImpl extends BaseServiceImpl{
 	}
 	
 	public TripDTO addPassenger(Long idTrip,Long idPassenger){
+		
+		
 		return null;
 	}
 	
 	public TripDTO closeTrip(Long idTrip){
-		return null;
+		
+		Trip trip = this.tripsRepository.closeTrip(idTrip);
+		if(trip == null){
+			return null;
+		}
+		return new TripDTO(trip);
 	}
 }
