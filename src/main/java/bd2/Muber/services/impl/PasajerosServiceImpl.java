@@ -11,14 +11,14 @@ public class PasajerosServiceImpl extends BaseServiceImpl{
 
 	
 	public ArrayList<PassengerDTO> getPassenger(){
-		 ArrayList<PassengerDTO> passengersDTO = new ArrayList<PassengerDTO>();
+		ArrayList<PassengerDTO> passengersDTO = new ArrayList<PassengerDTO>();
 		List result = (List) this.pasajerosRepository.getPassenger();
 		Iterator iterator = result.iterator();
-		 while(iterator.hasNext()){
-		 	Passenger p = (Passenger) iterator.next();
+		while(iterator.hasNext()){
+			Passenger p = (Passenger) iterator.next();
 		 	passengersDTO.add(new PassengerDTO(p));
-		 }
-		 return passengersDTO;
+		}
+		return passengersDTO;
 	}
 	
 	public PassengerDTO addCredit(Long idUser, Float credit){

@@ -1,5 +1,7 @@
 package bd2.Muber.repositories.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -21,10 +23,15 @@ public class HibernatePasajerosRepository  {
 	}
 	
 	public List getPassenger(){
-		//session = this.buildSessionFactory();
-		//System.out.println(sessionFactory.getClass().toString());
-		List result = (List) sessionFactory.getCurrentSession().createQuery("from Passenger").list();
-		return null;
+		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+		Iterator iterator = sessionFactory.getCurrentSession().createQuery("from Passenger").iterate();
+		while(iterator.hasNext()){
+			Passenger passenger = (Passenger) iterator.next();
+			passengers.add(passenger);
+		}
+		
+		return passengers;		
+		
 	}	
 	
 	public Passenger getUser(Long idUser) {
