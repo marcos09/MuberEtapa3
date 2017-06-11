@@ -39,9 +39,9 @@ public class TripDTO {
 		this.setDate(aTrip.getDate());
 		this.setFrom(aTrip.getFromTrip());
 		this.setTo(aTrip.getFromTrip());
-		this.setDriver(aTrip.getDriver());
-		this.setScores(aTrip.getScores());		
-		this.setPassengers(aTrip.getPassengers());
+		//this.setDriver(aTrip.getDriver());
+		//this.setScores(aTrip.getScores());		
+		//this.setPassengers(aTrip.getPassengers());
 		//ver aca que queda la lista de pasajeros y no son DTO
 		
 	}

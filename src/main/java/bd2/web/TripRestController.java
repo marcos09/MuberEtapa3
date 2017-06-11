@@ -1,5 +1,6 @@
 package bd2.web;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,13 @@ public class TripRestController extends MuberRestController{
 	TripsServiceImpl tripService = ServiceLocator.getInstance().getTripsService();
 	
 	@RequestMapping(value = "/abiertos", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public String passenger() {
+	public ResponseEntity<ArrayList<TripDTO>> passenger() {
+		ArrayList<TripDTO> trips = tripService.getOpenTrips();
+		if(trips == null){
+			return new ResponseEntity<ArrayList<TripDTO>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<ArrayList<TripDTO>>(trips,HttpStatus.OK);
 		
-		return null;
 	}
 	
 	
@@ -48,15 +53,12 @@ public class TripRestController extends MuberRestController{
 		tripDTO.setTo(tripTo);
 		tripDTO.setFrom(tripOrigin);
 		tripDTO = tripService.addTrip(tripDTO, idDriver);
-		/*
+		
 		if(tripDTO == null){
 			return new ResponseEntity<TripDTO>(HttpStatus.BAD_REQUEST);
 		}
-		else{
-			return new ResponseEntity<TripDTO>(tripDTO, HttpStatus.CREATED);
-		}
-		*/
 		return new ResponseEntity<TripDTO>(tripDTO, HttpStatus.CREATED);
+		
 	}
 	
 	@RequestMapping(value = "/agregarPasajero", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")

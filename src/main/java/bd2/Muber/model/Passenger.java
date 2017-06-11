@@ -8,7 +8,6 @@ import java.util.Date;
  */
 public class Passenger extends User {
 	
-	private Long idUser;
 	private Double credits;
 
 	
@@ -27,17 +26,6 @@ public class Passenger extends User {
 		super(namePassenger, passwd, datePasseger);
 		this.setCredits(creditsValue);
 	}
-
-
-	public Long getIdUser() {
-		return idUser;
-	}
-
-
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
-	}
-
 
 	public Double getCredits() {
 		return credits;
