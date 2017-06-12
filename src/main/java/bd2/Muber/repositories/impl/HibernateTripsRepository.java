@@ -74,8 +74,13 @@ public class HibernateTripsRepository {
 		System.out.println("Terminé el getTrip");
 		if (trip == null)
 			return null;
-		
-		trip.addPassenger(pasajerosRepository.getUser(idPassenger));
+		Passenger passenger = pasajerosRepository.getUser(idPassenger);
+		System.out.println("Terminé el getUser");
+		if(passenger == null){
+			System.out.println("El pasajero es null");
+			return null;
+		}
+		trip.addPassenger(passenger);
 		Session session = sessionFactory.openSession();
 		session.update(trip);
 		session.close();
