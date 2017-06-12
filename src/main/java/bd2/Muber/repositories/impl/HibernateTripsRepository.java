@@ -14,17 +14,8 @@ import bd2.Muber.model.Driver;
 import bd2.Muber.model.Passenger;
 import bd2.Muber.model.Trip;
 
-public class HibernateTripsRepository {
+public class HibernateTripsRepository extends HibernateGenericRepository {
 
-	SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 
 	public Trip add(Trip trip) {
 		Session session = sessionFactory.openSession();

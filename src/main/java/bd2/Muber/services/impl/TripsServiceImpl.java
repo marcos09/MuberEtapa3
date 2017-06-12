@@ -70,31 +70,24 @@ public class TripsServiceImpl extends BaseServiceImpl{
 
 	public TripDTO qualifyTrip(Long idTrip, Long idPassenger, int score, String comment) {
 		Trip trip = this.tripsRepository.getTrip(idTrip);
-		if(trip == null){
-			System.out.println("El viaje no existe");;
-			return null;
-		}
-		if(trip.canQualify()){
-			Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
-			if(passenger == null){
-				System.out.println("El pasajero no existe");
-				return null;
+		if(trip != null){
+			System.out.println("El viaje existe");
+			if(trip.canQualify()){
+				System.out.println("La fecha y la cantidad de pasajeros cierra");
+				Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
+				if(passenger != null){
+					System.out.println("Existe el usuario");
+					if(trip.getPassengers().contains(passenger)){
+						System.out.println("Se debería haber creado la calificación");
+						Score scoreNew = new Score(comment, score, trip, passenger);
+						trip.addScore(scoreNew);
+						tripsRepository.saveOrUpdate(trip);
+						return new TripDTO(trip);
+					}
+				}	
 			}
-			else{
-				if(trip.getPassengers().contains(passenger)){
-					System.out.println("Se debería haber creado la calificación");
-					Score scoreNew = new Score(comment, score, trip, passenger);
-				}
-				else{
-					System.out.println("El pasajero no participó del viaje");
-				}
-				return null;
-			}	
 		}
-		else{
-			System.out.println("No se puede calificar por la fecha");
-			return null;
-		}
-
+		System.out.println("No se pudo calificar");
+		return null;
 	}
 }

@@ -6,7 +6,7 @@ import java.util.Date;
  * @author yato
  *
  */
-public abstract class User {
+public abstract class User implements PersistentMuberObject {
 	
 	private Long idUser;
 	private String name;

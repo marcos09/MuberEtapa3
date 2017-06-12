@@ -13,17 +13,6 @@ import bd2.Muber.model.Driver;
  */
 public class HibernateDriversRepository extends HibernateGenericRepository{
 
-	SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
 	public ArrayList<Driver> getDrivers(){
 		
 		ArrayList<Driver> drivers = new ArrayList<Driver>();

@@ -4,7 +4,7 @@ package bd2.Muber.model;
  * @author marcos
  *
  */
-public class Score {
+public class Score implements PersistentMuberObject{
 
 	
 	private Long idScore;
@@ -15,7 +15,7 @@ public class Score {
 
 	
 	public Score() {
-		// TODO Auto-generated constructor stub
+ 
 	}
 	
 	

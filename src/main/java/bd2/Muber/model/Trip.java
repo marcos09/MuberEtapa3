@@ -9,10 +9,10 @@ import java.util.Set;
 import bd2.Muber.dto.TripDTO;
 
 /**
- * @author yato
+ * @author marcos
  *
  */
-public class Trip {
+public class Trip implements PersistentMuberObject{
 
 	private Long idTrip;
 	private Float cost;
@@ -192,9 +192,13 @@ public class Trip {
 			this.passengers.add(passenger);
 	}
 	
+	/**
+	 * Mensaje que devuelve si un viaje se puede modificar verificando que haya pasado su fecha de realización 
+	 * y que la cantidad de calificaciones recibidas sea menor que el número de pasajero registrados para el viaje
+	 */
+
 	public boolean canQualify(){
-		//Ver, tiene algún error
-		return (date.before(new Date())) && (scores.size() < passengers.size());
+		return (date.before(new Date())) && (scores.size() <passengers.size());
 	}
 		
 	public void closeTrip(){
@@ -220,5 +224,8 @@ public class Trip {
 		}
 	}
 	
+	public void addScore(Score s){
+		scores.add(s);
+	}
 	
 }

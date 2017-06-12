@@ -10,17 +10,8 @@ import org.hibernate.SessionFactory;
 import bd2.Muber.model.Driver;
 import bd2.Muber.model.Passenger;
 
-public class HibernatePasajerosRepository  {
+public class HibernatePasajerosRepository extends HibernateGenericRepository {
 	
-	protected SessionFactory sessionFactory;
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
 	
 	public List getPassenger(){
 		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
@@ -45,16 +36,11 @@ public class HibernatePasajerosRepository  {
 
 	public Passenger addCredit(Long idUser, Float credit) {
 		Passenger passenger = (Passenger) this.getUser(idUser);
-		System.out.println("Terminé el getUser");
 		if(passenger == null){
 			return null;
 		}
-		
 		passenger.addCredits(credit);
-		Session session = sessionFactory.openSession();
-		session.update(passenger);
-		
-		session.close();
+		this.saveOrUpdate(passenger);		
 		return passenger;
 	}
 

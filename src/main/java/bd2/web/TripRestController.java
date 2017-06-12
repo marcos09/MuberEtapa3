@@ -1,7 +1,6 @@
 package bd2.web;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,10 +69,13 @@ public class TripRestController extends MuberRestController{
 	}
 	
 	@RequestMapping(value = "/calificar", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
-	public String scoreTrip(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger, @RequestParam(value="puntaje", required=true) int score, @RequestParam(value="comentario", required=true) String comment) {
+	public ResponseEntity<TripDTO> scoreTrip(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger, @RequestParam(value="puntaje", required=true) int score, @RequestParam(value="comentario", required=true) String comment) {
 		
 		TripDTO tripDTO = tripService.qualifyTrip(idTrip,idPassenger, score, comment);
-		return null;
+		if(tripDTO != null){
+			new ResponseEntity<TripDTO>(tripDTO,HttpStatus.OK);
+		}
+		return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);
 	}
 	
 	//Ver...Devuelve un 403 no se por que
