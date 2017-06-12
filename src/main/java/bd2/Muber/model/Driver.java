@@ -1,8 +1,10 @@
 package bd2.Muber.model;
 
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * @author yato
@@ -19,7 +21,23 @@ public class Driver extends User{
 		this.setTrips(new HashSet<Trip>());
 	}
 	
-	
+	public Float getPromedyScore(){
+		ArrayList<Integer> points = new ArrayList<Integer>();
+		Iterator<Trip> iterator = (Iterator<Trip>) trips.iterator();
+		while(iterator.hasNext()){
+			points.addAll(iterator.next().getScore());
+		}
+		if(points.isEmpty()){
+			return 0f;
+		}
+		Iterator <Integer>  i = points.iterator();
+		Float sum = 0f;
+		while(i.hasNext()){
+			sum += i.next();
+		}
+		return sum/points.size();
+		
+	}
 	/**
 	 * @param driver_name
 	 * @param driver_password

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="bd2.Muber.model">
+	<class name="Trip" table="TRIP">
+		<id name="idTrip" column="TRIP_ID" type="long">
+			<generator class="native" />
+		</id>
+		
+		<property name="cost" type="float" />
+		<property name="numberOfpassengers" type="int" />
+		<property name="date" type="date" />
+		<property name="fromTrip" type="string" />
+		<property name="destiny" type="string" />
+		<property name="state" type="string" />
+		
+		
+		<!-- <many-to-one name="driver" column="idDriver" not-null="true" cascade="all"></many-to-one>  -->
+		
+		<set name="passengers" table="PASSENGERTRIP" cascade="all">
+			<key column="idTrip"></key>
+			<many-to-many class="Passenger" column="idUser"></many-to-many>
+		</set>
+		
+		<set name="scores" cascade="all">
+			<key column="idTrip"></key>
+			<one-to-many class="Score" ></one-to-many>
+		</set>
+		
+	</class>
+</hibernate-mapping>

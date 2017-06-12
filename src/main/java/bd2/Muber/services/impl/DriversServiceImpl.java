@@ -28,7 +28,7 @@ public class DriversServiceImpl extends BaseServiceImpl{
 	}
 	
 	/**
-	 * retorna los detalles del conductor 
+	 * Retorna los detalles del conductor (Nombre, fecha de licencia, viajes realizados y puntaje promedio. 
 	 *
 	 */
 	public DriverAllDTO getDetails(Long idUser){

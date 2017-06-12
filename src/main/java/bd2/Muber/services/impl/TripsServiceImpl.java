@@ -8,6 +8,7 @@ import bd2.Muber.dto.PassengerDTO;
 import bd2.Muber.dto.TripDTO;
 import bd2.Muber.model.Driver;
 import bd2.Muber.model.Passenger;
+import bd2.Muber.model.Score;
 import bd2.Muber.model.Trip;
 
 /**
@@ -48,11 +49,15 @@ public class TripsServiceImpl extends BaseServiceImpl{
 		
 	}
 	
-	public TripDTO addPassenger(Long idTrip,Long idPassenger){
-		
-		
-		return null;
+	public TripDTO addPassenger(Long idTrip, Long idPassenger){
+		System.out.println("Estoy en el servicio");
+		Trip trip = this.tripsRepository.addPassenger(idPassenger, idTrip);
+		System.out.println("Llegué y retorno null");
+		if (trip == null)
+			return null;
+		return new TripDTO(trip);
 	}
+	
 	
 	public TripDTO closeTrip(Long idTrip){
 		
@@ -61,5 +66,35 @@ public class TripsServiceImpl extends BaseServiceImpl{
 			return null;
 		}
 		return new TripDTO(trip);
+	}
+
+	public TripDTO qualifyTrip(Long idTrip, Long idPassenger, int score, String comment) {
+		Trip trip = this.tripsRepository.getTrip(idTrip);
+		if(trip == null){
+			System.out.println("El viaje no existe");;
+			return null;
+		}
+		if(trip.canQualify()){
+			Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
+			if(passenger == null){
+				System.out.println("El pasajero no existe");
+				return null;
+			}
+			else{
+				if(trip.getPassengers().contains(passenger)){
+					System.out.println("Se debería haber creado la calificación");
+					Score scoreNew = new Score(comment, score, trip, passenger);
+				}
+				else{
+					System.out.println("El pasajero no participó del viaje");
+				}
+				return null;
+			}	
+		}
+		else{
+			System.out.println("No se puede calificar por la fecha");
+			return null;
+		}
+
 	}
 }

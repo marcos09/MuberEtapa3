@@ -1,4 +1,5 @@
 package bd2.Muber.model;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -31,7 +32,16 @@ public class Trip {
 		this.setPassengers(new HashSet<Passenger>());
 	}
 	
-	
+	public ArrayList<Integer> getScore(){
+		ArrayList<Integer> scores = new ArrayList<Integer>();
+		Iterator iterator = scores.iterator();
+		while(iterator.hasNext()){
+			Score score = (Score) iterator.next();
+			scores.add(score.getNumber());
+		}
+		return scores;
+		
+	}
 	/**
 	 * @param trip_cost
 	 * @param trip_numberOfpassengers
@@ -156,16 +166,6 @@ public class Trip {
 		scores.add(score);
 		
 	}
-
-	
-	/**
-	 * @param passenger agrega pasajero al viaje si hay espacio disponible
-	 */
-	public void addPassenger(Passenger passenger){
-		if(this.getNumberOfpassengers() - this.getPassengers().size() > 0)
-			this.passengers.add(passenger);
-	}
-	
 	
 	/**
 	 * @return the state
@@ -181,7 +181,22 @@ public class Trip {
 	public void setState(String state) {
 		this.state = state;
 	}
+
+
 	
+	/**
+	 * @param passenger agrega pasajero al viaje si hay espacio disponible
+	 */
+	public void addPassenger(Passenger passenger){
+		if(this.getNumberOfpassengers() - this.getPassengers().size() > 0)
+			this.passengers.add(passenger);
+	}
+	
+	public boolean canQualify(){
+		//Ver, tiene algún error
+		return (date.before(new Date())) && (scores.size() < passengers.size());
+	}
+		
 	public void closeTrip(){
 		this.setState("disable");
 	}
