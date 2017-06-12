@@ -71,16 +71,17 @@ public class TripRestController {
 		
 		TripDTO tripDTO = tripService.qualifyTrip(idTrip,idPassenger, score, comment);
 		if(tripDTO != null){
-			new ResponseEntity<TripDTO>(tripDTO,HttpStatus.OK);
+			return new ResponseEntity<TripDTO>(tripDTO,HttpStatus.OK);
 		}
 		return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);
+		
+		
 	}
 	
-	//Ver...Devuelve un 403 no se por que
-	@RequestMapping(value = "/finalizar", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
+	@RequestMapping(value = "/finalizar", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<TripDTO> closeTrip(@RequestParam(value="viajeId", required=true) Long idTrip) {
-		
-		TripDTO tripDTO = tripService.closeTrip(idTrip);
+		System.out.println("Estoy dentro");
+		TripDTO tripDTO = tripService.closeTrip(idTrip); 
 		if(tripDTO == null){
 			return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);
 		}

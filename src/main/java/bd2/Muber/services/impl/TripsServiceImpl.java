@@ -63,21 +63,22 @@ public class TripsServiceImpl extends BaseServiceImpl{
 	}
 
 	public TripDTO qualifyTrip(Long idTrip, Long idPassenger, int score, String comment) {
+		TripDTO tripDTO = null;
 		Trip trip = this.tripsRepository.getTrip(idTrip);
 		if(trip != null){
 			if(trip.canQualify()){
 				Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
 				if(passenger != null){
-					System.out.println("Existe el usuario");
 					if(trip.getPassengers().contains(passenger)){
 						Score scoreNew = new Score(comment, score, trip, passenger);
 						trip.addScore(scoreNew);
 						tripsRepository.saveOrUpdate(trip);
-						return new TripDTO(trip);
+						System.out.println("Agregué una calificación");
+						tripDTO = new TripDTO(trip);
 					}
 				}	
 			}
 		}
-		return null;
+		return tripDTO;
 	}
 }

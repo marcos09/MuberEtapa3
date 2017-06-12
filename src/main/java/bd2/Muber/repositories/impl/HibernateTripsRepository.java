@@ -55,7 +55,8 @@ public class HibernateTripsRepository extends HibernateGenericRepository {
 		if( result.isEmpty()){
 			return null;
 		}
-		return (Trip) result.get(0);
+		Trip trip = (Trip) result.get(0);
+		return trip;
 
 	}
 	

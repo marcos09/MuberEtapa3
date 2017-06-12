@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import bd2.Muber.dto.PassengerDTO;
+import bd2.Muber.dto.TripDTO;
 import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.PasajerosServiceImpl;
 
@@ -45,7 +46,6 @@ public class PassengerRestController {
 		ArrayList<PassengerDTO> result = passengerService.getPassenger();
 		return new ResponseEntity<ArrayList<PassengerDTO>>(result,HttpStatus.OK );
 	}
-
-
+	
 
 }
