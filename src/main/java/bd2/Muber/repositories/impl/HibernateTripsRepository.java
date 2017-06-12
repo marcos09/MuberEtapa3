@@ -31,6 +31,7 @@ public class HibernateTripsRepository extends HibernateGenericRepository {
 			return null;
 		}
 		Trip trip = (Trip) result.get(0);
+		trip.discountCredit();
 		trip.closeTrip();
 		sessionFactory.openSession().update(trip);
 		sessionFactory.close();

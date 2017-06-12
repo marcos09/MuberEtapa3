@@ -14,14 +14,14 @@ import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.PasajerosServiceImpl;
 
 @ControllerAdvice
-@RequestMapping("/pasajeros")
+@RequestMapping("services/pasajeros")
 @ResponseBody
 @EnableWebMvc
 
 //Ver como mejorar el mapping para que tome el /services de la superclase y no repetire las anotaciones en todos
 
 
-public class PassengerRestController extends MuberRestController{
+public class PassengerRestController {
 
 	PasajerosServiceImpl passengerService = ServiceLocator.getInstance().getPasajerosService();
 	
@@ -40,7 +40,7 @@ public class PassengerRestController extends MuberRestController{
 	/**
 	 * Devuelve una lista de los pasajeros de Muber
 	 */
-	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<ArrayList<PassengerDTO>> getDrivers() {
 		ArrayList<PassengerDTO> result = passengerService.getPassenger();
 		return new ResponseEntity<ArrayList<PassengerDTO>>(result,HttpStatus.OK );

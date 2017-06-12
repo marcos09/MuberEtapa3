@@ -11,16 +11,6 @@ import bd2.Muber.model.Passenger;
 import bd2.Muber.model.Score;
 import bd2.Muber.model.Trip;
 
-/**
- * @author yato
- *
- */
-/**
- * Calificar viaje, parámetros:
- * viajeId, pasajeroId, puntaje,comentario
- * Ver en que servicio ponerlo
- *
- */
 public class TripsServiceImpl extends BaseServiceImpl{
 	
 	public TripDTO addTrip(TripDTO tripDTO, Long idDriver){
@@ -58,7 +48,11 @@ public class TripsServiceImpl extends BaseServiceImpl{
 		return new TripDTO(trip);
 	}
 	
-	
+	/*
+	 * Mensaje que finaliza el viaje y descuenta el crédito de los pasajeros
+	 * que se unieron al viaje. No está especificado como hacer el control 
+	 * del descuento de créditos que no que queden negativos. 
+	 * */
 	public TripDTO closeTrip(Long idTrip){
 		
 		Trip trip = this.tripsRepository.closeTrip(idTrip);
@@ -71,14 +65,11 @@ public class TripsServiceImpl extends BaseServiceImpl{
 	public TripDTO qualifyTrip(Long idTrip, Long idPassenger, int score, String comment) {
 		Trip trip = this.tripsRepository.getTrip(idTrip);
 		if(trip != null){
-			System.out.println("El viaje existe");
 			if(trip.canQualify()){
-				System.out.println("La fecha y la cantidad de pasajeros cierra");
 				Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
 				if(passenger != null){
 					System.out.println("Existe el usuario");
 					if(trip.getPassengers().contains(passenger)){
-						System.out.println("Se debería haber creado la calificación");
 						Score scoreNew = new Score(comment, score, trip, passenger);
 						trip.addScore(scoreNew);
 						tripsRepository.saveOrUpdate(trip);
@@ -87,7 +78,6 @@ public class TripsServiceImpl extends BaseServiceImpl{
 				}	
 			}
 		}
-		System.out.println("No se pudo calificar");
 		return null;
 	}
 }

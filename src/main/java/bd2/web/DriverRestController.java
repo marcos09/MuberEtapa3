@@ -29,12 +29,12 @@ import bd2.Muber.services.impl.PasajerosServiceImpl;
 
 
 @ControllerAdvice
-@RequestMapping("/conductores")
+@RequestMapping("/services/conductores")
 @ResponseBody
 @EnableWebMvc
 
 
-public class DriverRestController extends MuberRestController{
+public class DriverRestController {
 	DriversServiceImpl driverService = ServiceLocator.getInstance().getDriversService();
 	
 	
@@ -42,7 +42,7 @@ public class DriverRestController extends MuberRestController{
 	 *retorna una lista que contiene los conductores de Muber 
 	 *
 	 */
-	@RequestMapping(value = "/listar", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
+	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<ArrayList<DriverDTO>> getDrivers() {
 		ArrayList<DriverDTO> result = driverService.getDrivers();
 		return new ResponseEntity<ArrayList<DriverDTO>>(result,HttpStatus.OK );

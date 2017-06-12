@@ -16,13 +16,11 @@ import bd2.Muber.services.impl.TripsServiceImpl;
 
 
 @ControllerAdvice
-@RequestMapping("/viajes")
+@RequestMapping("services/viajes")
 @ResponseBody
 @EnableWebMvc
 
-//Ver como mejorar el mapping para que tome el /services de la superclase y no repetire las anotaciones en todos
-
-public class TripRestController extends MuberRestController{
+public class TripRestController {
 
 	TripsServiceImpl tripService = ServiceLocator.getInstance().getTripsService();
 	
