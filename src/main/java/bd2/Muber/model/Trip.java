@@ -224,8 +224,5 @@ public class Trip implements PersistentMuberObject{
 		}
 	}
 	
-	public void addScore(Score s){
-		scores.add(s);
-	}
 	
 }
