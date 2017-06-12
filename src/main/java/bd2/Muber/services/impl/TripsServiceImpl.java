@@ -16,13 +16,14 @@ public class TripsServiceImpl extends BaseServiceImpl{
 	public TripDTO addTrip(TripDTO tripDTO, Long idDriver){
 		Driver driver = this.driversRepository.getUser(idDriver);
 		if(driver == null){
+			System.out.println("El conductor no existe");
 			return null;
 		}
 		else{
 			tripDTO.setDriver(driver);
 			Trip trip = new Trip(tripDTO);
 			this.tripsRepository.add(trip);
-			return null;
+			return tripDTO;
 			//Ver este return Null que debería ser otra cosa
 		}
 	}
@@ -61,14 +62,24 @@ public class TripsServiceImpl extends BaseServiceImpl{
 		}
 		return new TripDTO(trip);
 	}
-
+	public ArrayList<TripDTO> getDriverPromedy(Long idDriver){
+		Driver driver = this.driversRepository.getDetail(idDriver);
+		this.tripsRepository.getDriverPromedy(driver);
+		return null;
+	}
+		
+		
+	
 	public TripDTO qualifyTrip(Long idTrip, Long idPassenger, int score, String comment) {
 		TripDTO tripDTO = null;
 		Trip trip = this.tripsRepository.getTrip(idTrip);
 		if(trip != null){
+			System.out.println("El viaje existe");
 			if(trip.canQualify()){
+				System.out.println("Puedo calificar");
 				Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
 				if(passenger != null){
+					System.out.println("Existe el pasajero");
 					if(trip.getPassengers().contains(passenger)){
 						Score scoreNew = new Score(comment, score, trip, passenger);
 						trip.addScore(scoreNew);

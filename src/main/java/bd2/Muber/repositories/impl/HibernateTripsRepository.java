@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import bd2.Muber.model.Driver;
 import bd2.Muber.model.Passenger;
@@ -26,15 +25,14 @@ public class HibernateTripsRepository extends HibernateGenericRepository {
 
 	public Trip closeTrip(Long idTrip) {
 		
-		List result = (List) sessionFactory.getCurrentSession().createQuery("from Trip where TRIP_ID = :idTrip").setParameter("idUser", idTrip).list();
+		List result = (List) sessionFactory.getCurrentSession().createQuery("from Trip where TRIP_ID = :idTrip").setParameter("idTrip", idTrip).list();
 		if( result.isEmpty()){
 			return null;
 		}
 		Trip trip = (Trip) result.get(0);
 		trip.discountCredit();
 		trip.closeTrip();
-		sessionFactory.openSession().update(trip);
-		sessionFactory.close();
+		sessionFactory.getCurrentSession().update(trip);
 		return trip;
 		
 	}
@@ -80,6 +78,20 @@ public class HibernateTripsRepository extends HibernateGenericRepository {
 	
 		return trip;
 	}
+
+	public Float getDriverPromedy(Driver driver) {
+		
+		List result = (List) sessionFactory.getCurrentSession().createQuery("from Trip where driver = aDriver").setParameter("aDriver", driver).list();
+		if(result != null){
+			Float promedy = (Float) result.get(0);
+			System.out.println(promedy);
+			return promedy;
+		}
+		return null;
+		
+		
+	}
+
 	
 	/*
 	 * Obtener viajes abiertos formato SQL

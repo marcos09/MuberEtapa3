@@ -27,6 +27,8 @@ public class DriversServiceImpl extends BaseServiceImpl{
 		return driversDTO;
 	}
 	
+
+	
 	/**
 	 * Retorna los detalles del conductor (Nombre, fecha de licencia, viajes realizados y puntaje promedio. 
 	 *
@@ -34,6 +36,7 @@ public class DriversServiceImpl extends BaseServiceImpl{
 	public DriverAllDTO getDetails(Long idUser){
 		Driver driver = this.driversRepository.getDetail(idUser);
 		if(driver != null){
+			System.out.println(driver.getScore());
 			return new DriverAllDTO(driver);
 		}
 		return null;

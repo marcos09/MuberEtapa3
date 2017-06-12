@@ -11,7 +11,7 @@ public abstract class User implements PersistentMuberObject {
 	private Long idUser;
 	private String name;
 	private String password; 
-	private Date date;
+	private Date fnac;
 	
 	public User() {
 	}
@@ -26,7 +26,7 @@ public abstract class User implements PersistentMuberObject {
 		this();
 		this.name = name; 
 		this.password = password;
-		this.date = new Date();			
+		this.fnac = new Date();			
 	}
 
 
@@ -60,13 +60,13 @@ public abstract class User implements PersistentMuberObject {
 	}
 
 
-	public Date getDate() {
-		return date;
+	public Date getFnac() {
+		return fnac;
 	}
 
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setFnac(Date date) {
+		this.fnac = date;
 	}
 
 

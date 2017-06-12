@@ -18,7 +18,7 @@ public class PassengerDTO extends UserDTO{
 	
 	public PassengerDTO(Passenger aPassenger){
 		this.setName(aPassenger.getName());
-		this.setDate(aPassenger.getDate());
+		this.setDate(aPassenger.getFnac());
 		this.setPassword(aPassenger.getPassword());
 		this.setCredits(aPassenger.getCredits());
 		this.setIdUser(aPassenger.getIdUser());

@@ -27,7 +27,7 @@ public class DriverDTO extends UserDTO{
 	public DriverDTO(Driver aDriver) {
 		this.setName(aDriver.getName());
 		this.setPassword(aDriver.getPassword());
-		this.setDate(aDriver.getDate());
+		this.setDate(aDriver.getFnac());
 		this.setLicense(aDriver.getLicense());
 		//this.setTrips(this.transformCollectionDTO(aDriver.getTrips()));
 		this.setIdUser(aDriver.getIdUser());

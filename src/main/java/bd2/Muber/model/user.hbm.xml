@@ -12,7 +12,7 @@
 		
 		<property name="name" not-null="true" type="string" />
 		<property name="password" not-null="true" type="string" />
-		<property name="date" not-null="true" type="date" />
+		<property name="fnac" not-null="true" type="date" />
 		<subclass name="Passenger" discriminator-value="Passenger">
 			<property name="credits" type="double"/>
 		</subclass>

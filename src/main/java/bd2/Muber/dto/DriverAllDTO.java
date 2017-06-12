@@ -21,7 +21,7 @@ public class DriverAllDTO {
 
 	public DriverAllDTO(Driver aDriver) {
 		this.setName(aDriver.getName());
-		this.setDate(aDriver.getDate());
+		this.setDate(aDriver.getFnac());
 		this.setScore(aDriver.getScore());
 		this.setTrips(this.transformCollectionDTO(aDriver.getTrips()));
 	}

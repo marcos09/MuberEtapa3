@@ -36,14 +36,11 @@ public class TripRestController {
 	
 	
 	/*
-	 * Ver fecha del viaje
 	 * Genera un nuevo viaje con el conductor y lo agrega en la colección 
 	 * */
 	@RequestMapping(value = "/nuevo", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<TripDTO> createTrip(@RequestParam(value="origen", required=true) String tripOrigin, @RequestParam(value="destino", required=true) String tripTo, @RequestParam(value="conductorId", required=true) Long idDriver, @RequestParam(value="costoTotal", required=true) Float cost, @RequestParam(value="cantidadPasajeros", required=true) int numberOfPassengers ) {
-		
-		//Funcionando: Ver error de fechas y del idUsuario que no se carga bien. Procesar bien la respuesta del service
-		
+				
 		TripDTO tripDTO= new TripDTO();
 		tripDTO.setCost(cost);		
 		tripDTO.setNumberOfpassengers(numberOfPassengers);
@@ -54,7 +51,7 @@ public class TripRestController {
 		if(tripDTO == null){
 			return new ResponseEntity<TripDTO>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<TripDTO>(tripDTO, HttpStatus.CREATED);
+		return new ResponseEntity<TripDTO>(HttpStatus.CREATED);
 		
 	}
 	
@@ -78,9 +75,9 @@ public class TripRestController {
 		
 	}
 	
+	
 	@RequestMapping(value = "/finalizar", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<TripDTO> closeTrip(@RequestParam(value="viajeId", required=true) Long idTrip) {
-		System.out.println("Estoy dentro");
 		TripDTO tripDTO = tripService.closeTrip(idTrip); 
 		if(tripDTO == null){
 			return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);

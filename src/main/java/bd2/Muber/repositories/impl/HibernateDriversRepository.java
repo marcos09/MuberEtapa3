@@ -13,6 +13,16 @@ import bd2.Muber.model.Driver;
  */
 public class HibernateDriversRepository extends HibernateGenericRepository{
 
+	
+	public Driver getUser(Long idUser) {
+		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver where idUser = :idDriver").setParameter("idDriver", idUser).list();
+		if( result.isEmpty()){
+			return null;
+		}
+		return (Driver) result.get(0);
+		
+	}
+	
 	public ArrayList<Driver> getDrivers(){
 		
 		ArrayList<Driver> drivers = new ArrayList<Driver>();
@@ -26,7 +36,7 @@ public class HibernateDriversRepository extends HibernateGenericRepository{
 	}
 	
 	public Driver getDetail(Long idUser){
-		List result = (List) sessionFactory.getCurrentSession().createQuery("select name, license, avg (trips.scores.number) from Driver where idUser = :id").setParameter("id",idUser).list();
+		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver where idUser = :id").setParameter("id",idUser).list();
 		if( result.isEmpty()){
 			return null;
 		}
@@ -34,14 +44,7 @@ public class HibernateDriversRepository extends HibernateGenericRepository{
 	}
 
 
-	public Driver getUser(Long idUser) {
-		List result = (List) sessionFactory.getCurrentSession().createQuery("from Driver where USER_ID = :idUser").setParameter("idUser", idUser).list();
-		if( result.isEmpty()){
-			return null;
-		}
-		return (Driver) result.get(0);
-		
-	}
+	
 
 
 	
