@@ -41,9 +41,7 @@ public class TripsServiceImpl extends BaseServiceImpl{
 	}
 	
 	public TripDTO addPassenger(Long idTrip, Long idPassenger){
-		System.out.println("Estoy en el servicio");
 		Trip trip = this.tripsRepository.addPassenger(idPassenger, idTrip);
-		System.out.println("Terminé el repositorio");
 		if (trip == null)
 			return null;
 		return new TripDTO(trip);

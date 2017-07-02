@@ -12,6 +12,8 @@ import org.hibernate.Session;
 import bd2.Muber.model.Driver;
 import bd2.Muber.model.Passenger;
 import bd2.Muber.model.Trip;
+import bd2.Muber.repositories.RepositoryLocator;
+import bd2.Muber.services.ServiceLocator;
 
 public class HibernateTripsRepository extends HibernateGenericRepository {
 
@@ -59,22 +61,20 @@ public class HibernateTripsRepository extends HibernateGenericRepository {
 	}
 	
 	public Trip addPassenger(Long idPassenger, Long idTrip){
-		HibernatePasajerosRepository pasajerosRepository = new HibernatePasajerosRepository(); 
+		
 		
 		Trip trip = (Trip) this.getTrip(idTrip);
-		System.out.println("Terminé el getTrip");
 		if (trip == null)
 			return null;
-		Passenger passenger = pasajerosRepository.getUser(idPassenger);
-		System.out.println("Terminé el getUser");
+		Passenger passenger = RepositoryLocator.getInstance().getPasajerosRepository().getUser(idPassenger) ;		
+		
 		if(passenger == null){
-			System.out.println("El pasajero es null");
 			return null;
 		}
 		trip.addPassenger(passenger);
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.update(trip);
-		session.close();
+		
 	
 		return trip;
 	}

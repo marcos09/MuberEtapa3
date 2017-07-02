@@ -56,11 +56,10 @@ public class TripRestController {
 	}
 	
 	@RequestMapping(value = "/agregarPasajero", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public String addPassenger(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger) {
-		System.out.println("Estoy ingresando al rest ");
+	public void addPassenger(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger) {
 
 		tripService.addPassenger(idTrip, idPassenger);
-		return "Terminé el REST";
+
 	}
 	
 	@RequestMapping(value = "/calificar", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
