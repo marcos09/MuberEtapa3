@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import bd2.Muber.dto.PassengerCredits;
 import bd2.Muber.dto.PassengerDTO;
+import bd2.Muber.dto.TripPassenger;
 import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.PasajerosServiceImpl;
 
@@ -26,17 +30,14 @@ public class PassengerRestController {
 	PasajerosServiceImpl passengerService = ServiceLocator.getInstance().getPasajerosService();
 	
 	@RequestMapping(value = "/cargarCredito", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<PassengerDTO> addCredit(@RequestParam(value="pasajeroId", required=true) Long idPassenger, @RequestParam(value="monto", required=true) Float credits) {		
-		PassengerDTO passengerDTO = this.passengerService.addCredit(idPassenger, credits);
+	public ResponseEntity<PassengerDTO> addCredit(@RequestBody PassengerCredits parameters) {		
+		PassengerDTO passengerDTO = this.passengerService.addCredit(parameters.getPasajeroId(), parameters.getMonto());
 		if(passengerDTO == null){
 			return new ResponseEntity<PassengerDTO>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<PassengerDTO>(passengerDTO, HttpStatus.OK);
 	}
-	
-
-	//Ver ese mapeo que está mal. Debería recibir solo los /pasajeros/
-	
+		
 	/**
 	 * Devuelve una lista de los pasajeros de Muber
 	 */

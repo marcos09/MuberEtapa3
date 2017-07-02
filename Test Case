@@ -1,0 +1,21 @@
+Ver bien todos los id.
+
+Ejercicio a:
+	curl -X POST -d "origen=Cordoba&destino=Mar del Plata&conductorId=4&cantidadPasajeros=4&costoTotal=3500" http://lo^Clhost:8080/MuberRESTful/rest/services/viajes/nuevo"
+
+Ejercicio b:
+	
+	curl -X PUT -H 'concontent-type:application/json' -d '{"pasajeroId":2,"monto":4000}' http://localhost:8080/MuberRESTful/rest/services/pasajeros/cargarCredito
+
+	curl -X PUT -H 'content-type:application/json' -d '{"viajeId":11,"pasajeroId":3}' http://localhost:8080/MuberRESTful/rest/services/viajes/agregarPasajero
+
+Ejercicio c:
+	curl -X POST -d "pasajeroId=2&viajeId=11&puntaje=4&comentario=Muyy buen conductor" http://localhost:8080/MuberRESTful/rest/services/viajes/calificar
+
+	curl -X POST -d "pasajeroId=1&viajeId=11&puntaje=5&comentario=Un viaje muy bueno" http://localhost:8080/MuberRESTful/rest/services/viajes/calificar
+
+Ejercicio d:
+	http://localhost:8080/MuberRESTful/rest/services/viajes/finalizar
+
+
+

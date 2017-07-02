@@ -5,12 +5,15 @@ import java.util.ArrayList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import bd2.Muber.dto.TripDTO;
+import bd2.Muber.dto.TripId;
+import bd2.Muber.dto.TripPassenger;
 import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.TripsServiceImpl;
 
@@ -54,11 +57,11 @@ public class TripRestController {
 		return new ResponseEntity<TripDTO>(HttpStatus.CREATED);
 		
 	}
-	
+		
 	@RequestMapping(value = "/agregarPasajero", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public void addPassenger(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger) {
+	public void addPassenger2(@RequestBody TripPassenger parameters) {
 
-		tripService.addPassenger(idTrip, idPassenger);
+		tripService.addPassenger(parameters.getViajeId(), parameters.getPasajeroId());
 
 	}
 	
@@ -75,9 +78,9 @@ public class TripRestController {
 	}
 	
 	
-	@RequestMapping(value = "/finalizar", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<TripDTO> closeTrip(@RequestParam(value="viajeId", required=true) Long idTrip) {
-		TripDTO tripDTO = tripService.closeTrip(idTrip); 
+	@RequestMapping(value = "/finalizar", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
+	public ResponseEntity<TripDTO> closeTrip(@RequestBody TripId parameters) {
+		TripDTO tripDTO = tripService.closeTrip(parameters.getViajeId()); 
 		if(tripDTO == null){
 			return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);
 		}

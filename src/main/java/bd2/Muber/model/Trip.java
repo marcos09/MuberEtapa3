@@ -198,6 +198,9 @@ public class Trip implements PersistentMuberObject{
 	 */
 
 	public boolean canQualify(){
+		if(date == null){
+			return (scores.size() <passengers.size());
+		}
 		return (date.before(new Date())) && (scores.size() <passengers.size());
 	}
 		
