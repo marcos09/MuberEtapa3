@@ -11,26 +11,20 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-
-
-	<context:property-placeholder
-		location="classpath:config_${spring.profiles.active}.properties" />
-
-
 	<beans profile="dev,dev2">
 		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 			destroy-method="close">
 			<property name="driverClass">
-				<value>${jdbc.driverClassName}</value>
+				<value>com.mysql.jdbc.Driver</value>
 			</property>
-			<property name="jdbcUrl">
-				<value>${jdbc.url}</value>
+			<property name="jdbcUrl">			
+				<value>jdbc:mysql://127.0.0.1:3306/grupo02?autoReconnect=true</value>
 			</property>
 			<property name="user">
-				<value>${jdbc.username}</value>
+				<value>root</value>
 			</property>
 			<property name="password">
-				<value>${jdbc.password}</value>
+				<value></value>
 			</property>
 			<property name="testConnectionOnCheckin">
 				<value>true</value>

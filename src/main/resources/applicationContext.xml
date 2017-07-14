@@ -11,8 +11,8 @@
        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 
-	<import resource="classpath:dataSource.xml" />
-    <import resource="classpath:hibernate.cfg.xml" />
+	<import resource="dataSource.xml" />
+    <import resource="hibernate.cfg.xml" />
 
 
 	<bean id="transactionManager"
