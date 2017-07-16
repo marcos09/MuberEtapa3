@@ -46,6 +46,21 @@ public class TripDTO {
 		
 	}
 
+	
+
+	public TripDTO(Float cost, int numberOfpassengers, Date date, String from, String to,
+			Collection<Passenger> passengers, Driver driver, Set<Score> scores) {
+		super();
+		this.cost = cost;
+		this.numberOfpassengers = numberOfpassengers;
+		this.date = date;
+		this.from = from;
+		this.to = to;
+		this.passengers = passengers;
+		this.driver = driver;
+		this.scores = scores;
+	}
+
 
 	/**
 	 * @return the cost

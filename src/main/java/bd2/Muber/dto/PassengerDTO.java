@@ -3,6 +3,8 @@
  */
 package bd2.Muber.dto;
 
+import java.util.Date;
+
 import bd2.Muber.model.Passenger;
 
 /**
@@ -15,7 +17,14 @@ public class PassengerDTO extends UserDTO{
 	public PassengerDTO(){
 		
 	}
-	
+		
+	public PassengerDTO(Double credits, String name, String password, Date date) {
+		super(name, password, date);
+		this.credits = credits;
+	}
+
+
+
 	public PassengerDTO(Passenger aPassenger){
 		this.setName(aPassenger.getName());
 		this.setDate(aPassenger.getFnac());

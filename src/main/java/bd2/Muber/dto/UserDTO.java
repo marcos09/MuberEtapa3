@@ -11,6 +11,7 @@ public class UserDTO {
 	protected Date date;
 	
 	
+	
 	public UserDTO() {
 	}
 	
@@ -19,6 +20,13 @@ public class UserDTO {
 	}
 
 	
+	public UserDTO(String name, String password, Date date) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.date = date;
+	}
+
 	/**
 	 * @return the idUser
 	 */

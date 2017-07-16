@@ -7,13 +7,11 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import bd2.Muber.dto.PassengerCredits;
 import bd2.Muber.dto.PassengerDTO;
-import bd2.Muber.dto.TripPassenger;
 import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.PasajerosServiceImpl;
 
