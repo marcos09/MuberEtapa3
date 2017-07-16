@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import bd2.Muber.dto.ErrorDTO;
 import bd2.Muber.dto.TripDTO;
 import bd2.Muber.dto.TripId;
 import bd2.Muber.dto.TripPassenger;
@@ -42,7 +44,7 @@ public class TripRestController {
 	 * Genera un nuevo viaje con el conductor y lo agrega en la colección 
 	 * */
 	@RequestMapping(value = "/nuevo", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<TripDTO> createTrip(@RequestParam(value="origen", required=true) String tripOrigin, @RequestParam(value="destino", required=true) String tripTo, @RequestParam(value="conductorId", required=true) Long idDriver, @RequestParam(value="costoTotal", required=true) Float cost, @RequestParam(value="cantidadPasajeros", required=true) int numberOfPassengers ) {
+	public ResponseEntity<?> createTrip(@RequestParam(value="origen", required=true) String tripOrigin, @RequestParam(value="destino", required=true) String tripTo, @RequestParam(value="conductorId", required=true) Long idDriver, @RequestParam(value="costoTotal", required=true) Float cost, @RequestParam(value="cantidadPasajeros", required=true) int numberOfPassengers ) {
 				
 		TripDTO tripDTO= new TripDTO();
 		tripDTO.setCost(cost);		
@@ -52,9 +54,10 @@ public class TripRestController {
 		tripDTO = tripService.addTrip(tripDTO, idDriver);
 		
 		if(tripDTO == null){
-			return new ResponseEntity<TripDTO>(HttpStatus.BAD_REQUEST);
+			ErrorDTO error = new ErrorDTO("El conductor indicado para el viaje no existe");
+			return new ResponseEntity<ErrorDTO>(error, HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<TripDTO>(HttpStatus.CREATED);
+		return new ResponseEntity<TripDTO>(tripDTO,HttpStatus.CREATED);
 		
 	}
 		
@@ -66,25 +69,27 @@ public class TripRestController {
 	}
 	
 	@RequestMapping(value = "/calificar", method = RequestMethod.POST, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<TripDTO> scoreTrip(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger, @RequestParam(value="puntaje", required=true) int score, @RequestParam(value="comentario", required=true) String comment) {
+	public ResponseEntity<?> scoreTrip(@RequestParam(value="viajeId", required=true) Long idTrip, @RequestParam(value="pasajeroId", required=true) Long idPassenger, @RequestParam(value="puntaje", required=true) int score, @RequestParam(value="comentario", required=true) String comment) {
 		
 		TripDTO tripDTO = tripService.qualifyTrip(idTrip,idPassenger, score, comment);
 		if(tripDTO != null){
 			return new ResponseEntity<TripDTO>(tripDTO,HttpStatus.OK);
 		}
-		return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);
-		
+		ErrorDTO error = tripService.getError(idTrip, idPassenger);
+		return new ResponseEntity<ErrorDTO>(error, HttpStatus.BAD_REQUEST);
 		
 	}
 	
 	
 	@RequestMapping(value = "/finalizar", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<TripDTO> closeTrip(@RequestBody TripId parameters) {
-		TripDTO tripDTO = tripService.closeTrip(parameters.getViajeId()); 
+	public ResponseEntity<?> closeTrip(@RequestBody TripId parameters) {
+		Long idTrip = parameters.getViajeId();
+		TripDTO tripDTO = tripService.closeTrip(idTrip);
 		if(tripDTO == null){
-			return new ResponseEntity<TripDTO>(HttpStatus.NOT_FOUND);
+			ErrorDTO error = new ErrorDTO("El viaje que intenta finalizar no existe");
+			return new ResponseEntity<ErrorDTO>(error, HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<TripDTO>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<TripDTO>(tripDTO,HttpStatus.OK);
 	}
 
 }

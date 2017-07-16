@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import bd2.Muber.dto.DriverAllDTO;
 import bd2.Muber.dto.DriverDTO;
+import bd2.Muber.dto.ErrorDTO;
 import bd2.Muber.services.ServiceLocator;
 import bd2.Muber.services.impl.DriversServiceImpl;
 
@@ -27,7 +28,7 @@ public class DriverRestController {
 	
 	
 	/**
-	 *retorna una lista que contiene los conductores de Muber 
+	 *Retorna una lista que contiene los conductores de Muber 
 	 *
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
@@ -41,16 +42,19 @@ public class DriverRestController {
 	public String top10() {
 		return null;
 	}
+
+	/*
+	 * Retorna el detalle de del conductor solicitado con id = conductorId
+	 */
 	@RequestMapping(value = "/detalle", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<DriverAllDTO> createTrip(@RequestParam(value="conductorId", required=true) Long idDriver) {
+	public ResponseEntity<?> createTrip(@RequestParam(value="conductorId", required=true) Long idDriver) {
 		DriverAllDTO result = driverService.getDetails(idDriver);
 		if( result != null){
 			return new ResponseEntity<DriverAllDTO>(result, HttpStatus.OK);
-		}
-		return new ResponseEntity<DriverAllDTO>(result, HttpStatus.NOT_FOUND);
-		
+		}		
+		ErrorDTO error = new ErrorDTO();
+		error.setDescription("El conductor solicitado no existe");
+		return new ResponseEntity<ErrorDTO>(error, HttpStatus.NOT_FOUND);
 	}
-
-	
 
 }

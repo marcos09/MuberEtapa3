@@ -2,9 +2,9 @@ package bd2.Muber.services.impl;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
-import bd2.Muber.dto.PassengerDTO;
+import bd2.Muber.dto.DriverDTO;
+import bd2.Muber.dto.ErrorDTO;
 import bd2.Muber.dto.TripDTO;
 import bd2.Muber.model.Driver;
 import bd2.Muber.model.Passenger;
@@ -16,20 +16,19 @@ public class TripsServiceImpl extends BaseServiceImpl{
 	public TripDTO addTrip(TripDTO tripDTO, Long idDriver){
 		Driver driver = this.driversRepository.getUser(idDriver);
 		if(driver == null){
-			System.out.println("El conductor no existe");
 			return null;
 		}
 		else{
-			tripDTO.setDriver(driver);
+			tripDTO.setDriver(new DriverDTO(driver));
 			Trip trip = new Trip(tripDTO);
 			this.tripsRepository.add(trip);
-			return tripDTO;
-			//Ver este return Null que debería ser otra cosa
+			return new TripDTO(trip);
 		}
 	}
 	
 	public ArrayList<TripDTO> getOpenTrips(){
 
+		@SuppressWarnings("rawtypes")
 		Iterator iterator = (Iterator) this.tripsRepository.getOpenTrips().iterator();
 		ArrayList<TripDTO> tripsDTO = new ArrayList<TripDTO>();
 		while(iterator.hasNext()){
@@ -89,5 +88,27 @@ public class TripsServiceImpl extends BaseServiceImpl{
 			}
 		}
 		return tripDTO;
+	}
+	
+	/*
+	 * Mensaje que sirve para detectar el error que produjo que no se pueda calificar un viaje.
+	 * */
+	public ErrorDTO getError(Long idTrip, Long idPassenger){
+		Trip trip = this.tripsRepository.getTrip(idTrip);
+		if(trip != null){
+			if(trip.canQualify()){
+				Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
+				if(passenger != null){
+					if(!trip.getPassengers().contains(passenger)){
+						return new ErrorDTO("El pasajero indicado no participó del viaje");
+					}
+				}
+				return new ErrorDTO("El pasajero que intenta agregar al viaje no existe");
+			}
+			return new ErrorDTO("No es posible calificar el viaje indicado. Puede que no haya pasado su fecha, no esté finalizado o bien todos sus participantes ya han calificado");
+
+		}
+		ErrorDTO error = new ErrorDTO("El viaje solicitado no existe");
+		return error;
 	}
 }

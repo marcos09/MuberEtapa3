@@ -25,9 +25,10 @@ public class TripDTO {
 	private String from;
 	private String to;
 	private Collection<Passenger> passengers = new HashSet<Passenger>();
-	private Driver driver;
+	private DriverDTO driver;
 	private Set<Score> scores= new HashSet<Score>();
-	
+	private Long idTrip;
+
 	public TripDTO(){
 		
 	}
@@ -39,6 +40,7 @@ public class TripDTO {
 		this.setDate(aTrip.getDate());
 		this.setFrom(aTrip.getFromTrip());
 		this.setTo(aTrip.getFromTrip());
+		this.setIdTrip(aTrip.getIdTrip());
 		//this.setDriver(aTrip.getDriver());
 		//this.setScores(aTrip.getScores());		
 		//this.setPassengers(aTrip.getPassengers());
@@ -57,8 +59,24 @@ public class TripDTO {
 		this.from = from;
 		this.to = to;
 		this.passengers = passengers;
-		this.driver = driver;
+		this.driver = new DriverDTO(driver);
 		this.scores = scores;
+	}
+
+	
+	/**
+	 * @return the idTrip
+	 */
+	private Long getIdTrip() {
+		return idTrip;
+	}
+
+
+	/**
+	 * @param idTrip the idTrip to set
+	 */
+	private void setIdTrip(Long idTrip) {
+		this.idTrip = idTrip;
 	}
 
 
@@ -161,7 +179,7 @@ public class TripDTO {
 	/**
 	 * @return the driver
 	 */
-	public Driver getDriver() {
+	public DriverDTO getDriver() {
 		return driver;
 	}
 
@@ -169,7 +187,7 @@ public class TripDTO {
 	/**
 	 * @param driver the driver to set
 	 */
-	public void setDriver(Driver driver) {
+	public void setDriver(DriverDTO driver) {
 		this.driver = driver;
 	}
 
