@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Session;
+
 import bd2.Muber.dto.PassengerDTO;
 import bd2.Muber.model.Passenger;
+import bd2.Muber.model.Trip;
 
 public class PasajerosServiceImpl extends BaseServiceImpl{
 
@@ -27,6 +30,18 @@ public class PasajerosServiceImpl extends BaseServiceImpl{
 			return null;
 		}
 		return new PassengerDTO(passenger);
+		
+	}
+
+	public Long addPassenger(PassengerDTO passengerGerman) {
+		Passenger pepe = new Passenger();
+		Passenger passenger = new Passenger();
+		passenger.setCredits(passengerGerman.getCredits());
+		passenger.setFnac(passengerGerman.getDate());
+		passenger.setName(passengerGerman.getName());
+		passenger.setPassword(passengerGerman.getPassword());
+		Passenger passengerSaved = (Passenger) this.pasajerosRepository.saveOrUpdate(passenger);
+		return passengerSaved.getIdUser();
 		
 	}
 }

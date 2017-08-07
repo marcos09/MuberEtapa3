@@ -1,6 +1,7 @@
 package bd2.Muber.services.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import bd2.Muber.dto.DriverAllDTO;
@@ -42,5 +43,16 @@ public class DriversServiceImpl extends BaseServiceImpl{
 		return null;
 		
 	}
+
+
+
+	public Long add(DriverDTO roberto) {
+		
+		Driver driver = new Driver(roberto.getName(), roberto.getPassword(), roberto.getDate(), roberto.getLicense());
+		driver = (Driver) this.driversRepository.saveOrUpdate(driver);
+		return driver.getIdUser();
+	}
+		
+	
 	
 }

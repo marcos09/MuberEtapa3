@@ -124,4 +124,18 @@ public class TripsServiceImpl extends BaseServiceImpl{
 		ErrorDTO error = new ErrorDTO("El viaje solicitado no existe");
 		return error;
 	}
+	
+	public Long addTripId(TripDTO tripDTO, Long idDriver){
+		Driver driver = this.driversRepository.getUser(idDriver);
+		if(driver == null){
+			return null;
+		}
+		else{
+			tripDTO.setDriver(new DriverDTO(driver));
+			Trip trip = new Trip(tripDTO);
+			trip = this.tripsRepository.add(trip);
+			return trip.getIdTrip();
+		}
+	}
+
 }

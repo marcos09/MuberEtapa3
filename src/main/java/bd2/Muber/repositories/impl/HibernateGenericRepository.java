@@ -24,8 +24,9 @@ public class HibernateGenericRepository {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void saveOrUpdate(PersistentMuberObject persistentObject ) {
+	public PersistentMuberObject saveOrUpdate(PersistentMuberObject persistentObject ) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(persistentObject);
+		return persistentObject;
 	}
 }

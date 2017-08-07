@@ -4,8 +4,11 @@ package bd2.Muber.repositories.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import bd2.Muber.model.Driver;
+import bd2.Muber.model.Trip;
 
 /**
  * @author yato
@@ -41,6 +44,14 @@ public class HibernateDriversRepository extends HibernateGenericRepository{
 			return null;
 		}
 		return (Driver) result.get(0);
+	}
+
+	public Driver add(Driver driver) {
+			Session session = sessionFactory.openSession();
+			session.save(driver);
+			session.close();
+			return null;
+
 	}
 
 

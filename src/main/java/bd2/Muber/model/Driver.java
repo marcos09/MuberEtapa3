@@ -48,6 +48,7 @@ public class Driver extends User{
 		super(driver_name, driver_password, driver_date);
 		this.setLicense(driver_license);
 	}
+	
 	public Driver(String driver_name,  String driver_password, Date driver_date, String driver_license, Float score){
 		super(driver_name, driver_password, driver_date);
 		this.setLicense(driver_license);

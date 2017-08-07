@@ -22,7 +22,7 @@ public class HibernateTripsRepository extends HibernateGenericRepository {
 		Session session = sessionFactory.openSession();
 		session.save(trip);
 		session.close();
-		return null;
+		return trip;
 	}
 
 	public Trip closeTrip(Long idTrip) {
