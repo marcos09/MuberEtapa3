@@ -71,17 +71,13 @@ public class TripsServiceImpl extends BaseServiceImpl{
 		TripDTO tripDTO = null;
 		Trip trip = this.tripsRepository.getTrip(idTrip);
 		if(trip != null){
-			System.out.println("El viaje existe");
 			if(trip.canQualify()){
-				System.out.println("Puedo calificar");
 				Passenger passenger = this.pasajerosRepository.getUser(idPassenger);
 				if(passenger != null){
-					System.out.println("Existe el pasajero");
 					if(trip.getPassengers().contains(passenger)){
 						Score scoreNew = new Score(comment, score, trip, passenger);
 						trip.addScore(scoreNew);
 						tripsRepository.saveOrUpdate(trip);
-						System.out.println("Agregué una calificación");
 						tripDTO = new TripDTO(trip);
 					}
 				}	
@@ -90,6 +86,23 @@ public class TripsServiceImpl extends BaseServiceImpl{
 		return tripDTO;
 	}
 	
+	/*
+	 * Mensaje que sirve para detectar el error que produjo que no se agregar un pasajero al viaje.
+	 * */
+	public ErrorDTO getErrorAdd(Long idTrip, Long idPassenger){
+		
+		Trip trip = this.tripsRepository.getTrip(idTrip);
+		if(trip != null){
+			if(trip.getNumberOfpassengers() <= trip.getPassengers().size()){
+				return new ErrorDTO("El viaje ya se encuentra lleno. No es posible agregar mas pasajeros");
+			}
+			else{
+					return new ErrorDTO("El pasajero que intenta agregar no existe");
+			}
+			
+		}
+		return new ErrorDTO("El viaje solicitado no existe");
+	}
 	/*
 	 * Mensaje que sirve para detectar el error que produjo que no se pueda calificar un viaje.
 	 * */

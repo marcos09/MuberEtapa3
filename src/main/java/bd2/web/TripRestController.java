@@ -62,9 +62,17 @@ public class TripRestController {
 	}
 		
 	@RequestMapping(value = "/agregarPasajero", method = RequestMethod.PUT, produces = "application/json", headers = "Accept=application/json")
-	public void addPassenger2(@RequestBody TripPassenger parameters) {
-
-		tripService.addPassenger(parameters.getViajeId(), parameters.getPasajeroId());
+	public ResponseEntity<?> addPassenger2(@RequestBody TripPassenger parameters) {
+		
+		
+		TripDTO tripDTO = tripService.addPassenger(parameters.getViajeId(), parameters.getPasajeroId());
+		if(tripDTO != null){
+			return new ResponseEntity<TripDTO>(tripDTO,HttpStatus.OK);
+		}
+		ErrorDTO error = tripService.getErrorAdd(parameters.getViajeId(), parameters.getPasajeroId());
+		return new ResponseEntity<ErrorDTO>(error, HttpStatus.BAD_REQUEST);
+		
+		
 
 	}
 	

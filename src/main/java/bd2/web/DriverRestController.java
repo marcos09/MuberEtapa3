@@ -32,29 +32,27 @@ public class DriverRestController {
 	 *
 	 */
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public ResponseEntity<ArrayList<DriverDTO>> getDrivers() {
+	public ResponseEntity<?> getDrivers() {
 		ArrayList<DriverDTO> result = driverService.getDrivers();
-		return new ResponseEntity<ArrayList<DriverDTO>>(result,HttpStatus.OK );
-	}
-	
-	
-	@RequestMapping(value = "/top10", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
-	public String top10() {
-		return null;
-	}
+		if( result != null){
+			return new ResponseEntity<ArrayList<DriverDTO>>(result,HttpStatus.OK );
+		}
+		else{
+			return new ResponseEntity<ArrayList<DriverDTO>>(result,HttpStatus.NO_CONTENT);
+		}
 
+	}
+	
+	
 	/*
 	 * Retorna el detalle de del conductor solicitado con id = conductorId
 	 */
 	@RequestMapping(value = "/detalle", method = RequestMethod.GET, produces = "application/json", headers = "Accept=application/json")
 	public ResponseEntity<?> createTrip(@RequestParam(value="conductorId", required=true) Long idDriver) {
 		DriverAllDTO result = driverService.getDetails(idDriver);
-		if( result != null){
-			return new ResponseEntity<DriverAllDTO>(result, HttpStatus.OK);
-		}		
-		ErrorDTO error = new ErrorDTO();
-		error.setDescription("El conductor solicitado no existe");
-		return new ResponseEntity<ErrorDTO>(error, HttpStatus.NOT_FOUND);
+		
+		return new ResponseEntity<DriverAllDTO>(result, HttpStatus.OK);
+				
 	}
 
 }

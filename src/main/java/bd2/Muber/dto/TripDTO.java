@@ -58,9 +58,14 @@ public class TripDTO {
 		this.date = date;
 		this.from = from;
 		this.to = to;
-		this.passengers = passengers;
+		if(passengers != null){
+			this.passengers = passengers;
+		}
+		if(scores != null){
+			this.scores = scores;
+		}
 		this.driver = new DriverDTO(driver);
-		this.scores = scores;
+		
 	}
 
 	
